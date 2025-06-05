@@ -9,27 +9,22 @@ const listOrders = async (req, res) => {
       // Calculate total item count
       const itemCount = order.items.reduce((sum, item) => sum + item.quantity, 0);
 
-      // Determine status details, action button text, and icon based on order status
-      // let statusDetails = null;
-      // let actionButtonText = "";
-      // let actionButtonIcon = ""; // Using Font Awesome icon names for example
-
       switch (order.status) {
         case "Processing":
           actionButtonText = "Processing";
-          actionButtonIcon = "hourglass"; // Example icon
+          actionButtonIcon = "hourglass"; 
          const now = new Date();
     const createdAt = new Date(order.createdAt);
     const diffInMinutes = Math.round((now - createdAt) / (1000 * 60));
-          statusDetails = `${diffInMinutes} Min`; // Placeholder: Replace X with actual time calculation
+          statusDetails = `${diffInMinutes} Min`; 
           break;
         case "Served":
           actionButtonText = "Order Done";
-          actionButtonIcon = "check-circle"; // Example icon
+          actionButtonIcon = "check-circle"; 
           break;
         case "Not Picked up":
           actionButtonText = "Order Done";
-          actionButtonIcon = "check-circle"; // Example icon
+          actionButtonIcon = "check-circle"; 
           break;
         default:
           actionButtonText = "Update Status";
@@ -38,12 +33,12 @@ const listOrders = async (req, res) => {
       }
 
       return {
-       orderId: order.orderId ? `#${order.orderId}` : "#N/A", // Format as #108
+       orderId: order.orderId ? `#${order.orderId}` : "#N/A", 
         orderType: order.orderType,
-        table: order.orderType === "Dine In" ? order.table : "N/A", // Only show table for Dine In
-        orderTime: new Date(order.createdAt).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }), // Format time
+        table: order.orderType === "Dine In" ? order.table : "N/A",
+        orderTime: new Date(order.createdAt).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true }), 
         itemCount: itemCount,
-        items: order.items.map(item => ({ quantity: item.quantity, name: item.name })), // Only name and quantity
+        items: order.items.map(item => ({ quantity: item.quantity, name: item.name })),
         status: order.status,
         statusDetails: statusDetails,
         actionButtonText: actionButtonText,
@@ -58,11 +53,10 @@ const listOrders = async (req, res) => {
   }
 };
 
-// ✅ Create a new order (assuming this is already working correctly)
 const createOrder = async (req, res) => {
   try {
     const { table, time, items, orderType, status, totalAmount } = req.body;
-    const orderId = Date.now() + Math.floor(Math.random() * 1000); // Backend generates orderId
+    const orderId = Date.now() + Math.floor(Math.random() * 1000); 
 
     const newOrder = new Order({
       orderId,

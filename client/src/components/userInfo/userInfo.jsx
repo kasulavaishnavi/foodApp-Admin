@@ -96,9 +96,7 @@ const UserInfo = ({ selectedChoice, totalPreparationTime, sendOrderToBackend = (
       });
     } catch (error) {
       console.error("Error creating form:", error);
-      // if (error.response && error.response.data) {
-      //   console.error("Server Error Response Data:", error.response.data);
-      // }
+
     }
   };
 
