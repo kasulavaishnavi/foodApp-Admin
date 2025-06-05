@@ -1,0 +1,46 @@
+
+
+
+.place-order-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    font-family: "Roboto";
+    text-align: center;
+    position: relative;
+    top: 170px;
+}
+
+.place-order-container img{
+width: 200px;
+height: 200px;
+}
+
+
+
+@media (max-width:500px) {
+    
+
+
+.place-order-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    font-family: "Roboto";
+    text-align: center;
+    position: relative;
+    top: 170px;
+}
+
+.place-order-container img{
+width: 200px;
+height: 200px;
+}
+
+
+
+}
