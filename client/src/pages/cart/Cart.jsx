@@ -9,7 +9,7 @@ import Searchbar from "../../components/searchbar/Searchbar";
 import axios from "axios"
 
 const Cart = () => {
-  const url = "http://localhost:4000";
+  const url = "https://foodapp-server-t1i3.onrender.com";
  const [tableNumber, setTableNumber] = useState(""); 
 
     const sendOrderToBackend = async () => {

@@ -109,7 +109,7 @@ export const DashboardProvider = ({ children }) => {
   useEffect(() => {
     setLoading(true); // Set loading to true at the start of fetch
     Promise.all([
-      fetch("http://localhost:4000/api/food/orders")
+      fetch("https://foodapp-server-t1i3.onrender.com/api/food/orders")
         .then((res) => res.json())
         .then((data) => {
           // Validate and return data as an array for orders
@@ -120,7 +120,7 @@ export const DashboardProvider = ({ children }) => {
             return []; // Return empty array to prevent TypeError
           }
         }),
-      fetch("http://localhost:4000/api/food")
+      fetch("https://foodapp-server-t1i3.onrender.com/api/food")
         .then((res) => res.json())
         .then((data) => {
           // Validate and return data as an array for user details
