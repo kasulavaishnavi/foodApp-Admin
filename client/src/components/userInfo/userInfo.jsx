@@ -25,7 +25,7 @@ const UserInfo = ({ selectedChoice, totalPreparationTime, sendOrderToBackend = (
     state: "",
     zipCode: "",
     country: "",
-    
+    table: "",
   });
   const [swiped, setSwiped] = useState(false);
 
@@ -73,7 +73,7 @@ const UserInfo = ({ selectedChoice, totalPreparationTime, sendOrderToBackend = (
     console.log("Sending form data:", form);
         const payload = {
         ...form,
-        ...(selectedChoice === "Dine In" && { table: tableNumber }), // Add table to this payload too
+        ...(selectedChoice === "Dine In" && { table: tableNumber }), 
     };
     console.log("Sending UserInfo form data:", payload);
 
