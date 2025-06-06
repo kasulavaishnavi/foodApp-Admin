@@ -4,7 +4,7 @@ import "./OrderItem.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUtensils,faCircleCheck,faHourglassEnd } from "@fortawesome/free-solid-svg-icons";
 
-const OrderItem = ({ order, tableInfo, displayOrderId }) => {
+const OrderItem = ({ order, tableInfo }) => {
   console.log("Incoming order:", order);
 
   const getOrderItems = () => order.items || [];
@@ -155,7 +155,7 @@ const OrderItem = ({ order, tableInfo, displayOrderId }) => {
           <div className="orderSubHead">
             <p>
               <FontAwesomeIcon icon={faUtensils} className="Ordericon" />{" "}
-              {displayOrderId}{" "}
+              {order.orderId}{" "}
             </p>
             <p>Table-{tableInfo || "N/A"}</p>
             <p>{toISTTimeString(order.orderCreatedAt)}</p>

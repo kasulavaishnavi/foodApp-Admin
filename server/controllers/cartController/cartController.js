@@ -6,7 +6,7 @@ const Order = require("../../models/orderDetails");
 // ✅ Fetch all orders (latest first) and format for admin panel
 const listOrders = async (req, res) => {
   try {
-    const ordersFromDB = await Order.find().sort({ createdAt: -1 });
+    const ordersFromDB = await Order.find().sort({ createdAt: 1 });
 
     const formattedOrders = ordersFromDB.map(order => {
      const createdAt = new Date(order.createdAt); // already UTC
@@ -15,6 +15,8 @@ const listOrders = async (req, res) => {
       // Time-based status calculation
       const now = new Date();
       const diffInMinutes = Math.round((now - createdAt) / (1000 * 60));
+
+       const generatedOrderId = (index + 1).toString().padStart(3, '0');
       let actionButtonText = "";
       let actionButtonIcon = "";
       let statusDetails = "";
@@ -37,7 +39,7 @@ const listOrders = async (req, res) => {
       }
 
       return {
-        orderId: order.orderId ? `#${order.orderId}` : "#N/A",
+        orderId: `#${generatedOrderId}`, 
         orderType: order.orderType,
         table: order.orderType === "Dine In" ? order.table : "N/A",
         orderTime: createdAt.toLocaleTimeString('en-IN', {
@@ -68,17 +70,8 @@ const listOrders = async (req, res) => {
 const createOrder = async (req, res) => {
   try {
     const { table, items, orderType, status, totalAmount } = req.body;
-
-  const lastOrder = await Order.findOne().sort({ createdAt: -1 });
-    // Parses the last orderId to an integer, defaults to 0 if no orders exist
-    const lastOrderId = lastOrder ? parseInt(lastOrder.orderId) : 0;
-
-    // Generates the new order ID, incrementing the last ID and padding with leading zeros to '001' format
-    const newOrderId = (lastOrderId + 1).toString().padStart(3, '0');
-
-
+  
     const newOrder = new Order({
-      orderId : newOrderId,
       table,
       items,
       orderType,
