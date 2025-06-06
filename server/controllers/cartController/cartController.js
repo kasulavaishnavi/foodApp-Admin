@@ -14,7 +14,7 @@ const listOrders = async (req, res) => {
 
       // Time-based status calculation
       const now = new Date();
-      const diffInMinutes = Math.round((now - new Date(createdAtIST)) / (1000 * 60));
+      const diffInMinutes = Math.round((now - createdAt) / (1000 * 60));
       let actionButtonText = "";
       let actionButtonIcon = "";
       let statusDetails = "";
