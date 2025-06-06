@@ -91,7 +91,8 @@ const OrderItem = ({ order, tableInfo, displayOrderId }) => {
 
     const updateTime = () => {
       const now = new Date();
-      const elapsed = Math.floor((now - createdAt) / 60000);
+      const create = new Date(order.orderCreatedAt);
+      const elapsed = Math.floor((now - create)/60000);
       const totalPreparationTime = calculateOrderPreparationTime();
       const remaining = Math.max(totalPreparationTime - elapsed, 0);
       console.log("Elapsed:", elapsed, "Remaining:", remaining);
