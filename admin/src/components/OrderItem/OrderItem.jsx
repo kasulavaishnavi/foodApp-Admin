@@ -59,9 +59,9 @@ const OrderItem = ({ order, tableInfo, displayOrderId }) => {
 
   useEffect(() => {
       console.log("useEffect triggered", order);
-    if (!order?.orderTime) return;
+    if (!order?.orderCreatedAt) return;
 
-    const createdAt = new Date(order.orderTime);
+    const createdAt = new Date(order.orderCreatedAt);
     console.log("Parsed Order Time:", createdAt);
 
     if (!createdAt) {
@@ -110,7 +110,7 @@ const OrderItem = ({ order, tableInfo, displayOrderId }) => {
 
     updateTime(); // initial run
     const interval = setInterval(updateTime, 60000); // update every minute
-      console.log("Parsed Order Time:", createdAt);
+      console.log("Parsed Order Time:", );
 
     return () => clearInterval(interval);
   }, [order.orderCreatedAt, order.orderType, pickupStatus, order]);
@@ -143,7 +143,7 @@ const OrderItem = ({ order, tableInfo, displayOrderId }) => {
               {displayOrderId}{" "}
             </p>
             <p>Table-{tableInfo || "N/A"}</p>
-            <p>{order.orderCreatedAt}</p>
+            <p>{order.orderTime}</p>
             <h4 className="totalitem">{getTotalItems()} Item</h4>
           </div>
           <div
