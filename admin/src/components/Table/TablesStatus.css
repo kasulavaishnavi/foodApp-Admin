@@ -13,35 +13,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .tables-status-card h3 {
   font-size: 1.2em;
   font-weight: 600;
   margin: 0;
-}
-
-.tables-status-card .legend {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.85em;
-  color: #666;
-}
-
-.tables-status-card .legend-item {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-
-.tables-status-card .legend-item.available {
-  background-color: #3DC35F; 
-}
-
-.tables-status-card .legend-item.unavailable {
-  background-color: white;
 }
 
 .tables-grid {
@@ -70,8 +48,31 @@
   background-color: #ffffff; 
   color: #000000; 
 }
-
-.tables-grid .table.cursor-pointer {
-  cursor: pointer; 
+.counts{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
+
+.color{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.availableColor{
+  width: 9px;
+  height: 9px;
+  background-color: rgb(233, 232, 232);
+  border-radius: 50%;
+}
+
+.reservedColor{
+  width: 9px;
+  height: 9px;
+  background-color: #3DC35F;
+  border-radius: 50%;
+}
+
 

@@ -8,7 +8,7 @@ faTrash,faChair
 } from "@fortawesome/free-solid-svg-icons";
 
 const Tables = () => {
-  const { tables, setTables } = useContext(TableContext);
+  const { tables, setTables, searchInput, setSearchInput } = useContext(TableContext);
 
   const [newTable, setNewTable] = useState({ chairs: "03" });
   const [showForm, setShowForm] = useState(false);
@@ -54,7 +54,9 @@ const Tables = () => {
 
     <div className="Main">
   <div className="searchBar">
-    <input type="text" />
+    <input type="text"  placeholder="Search Table Number"
+    value={searchInput}
+    onChange={(e)=>setSearchInput(e.target.value)}/>
   </div>
     <div className="TableContainer">
       <h2 className="TableHeading">Tables</h2>

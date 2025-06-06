@@ -4,7 +4,7 @@
   overflow-y: scroll;
 }
 .TableContainer {
-  margin-top: 20px;
+  margin-top: 18px;
   background-color:white;
   width: 1150px;
   height: 87vh;
@@ -15,6 +15,12 @@ padding: 10px;
 font-weight: 500;
 }
 
+.searchBar input{
+  width: 15vw;
+  height: 5vh;
+  border-radius: 7px;
+  border: 2px solid #a4a2a2;
+}
 
 .TablesGrid {
 display: grid;

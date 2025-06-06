@@ -10,36 +10,28 @@ const TablesStatus = () => {
     return <div className="p-4 text-gray-600">Loading tables...</div>;
   }
 
-  const toggleStatus = (id) => {
-    const updatedTables = tables.map((table) =>
-      table.id === id
-        ? {
-            ...table,
-            status: table.status === 'available' ? 'reserved' : 'available',
-          }
-        : table
-    );
-    setTables(updatedTables);
-  };;
 
   const availableTablesCount = tables.filter(t => t.status === 'available').length;
-  const unavailableTablesCount = tables.filter(t => t.status === 'reserved').length;
+  const reservedTablesCount = tables.filter(t => t.status === 'reserved').length;
 
   return (
     <div className="tables-status-card">
       <div className="card-header">
         <h3>Tables</h3>
-        <div className="legend">
+        {/* <div className="legend">
           <div className="legend-item available"></div> Available
-          <div className="legend-item unavailable"></div> Unavailable
+          <div className="legend-item unavailable"></div> Reserved
+        </div> */}
+        <div className="counts">
+          <span className='color'><p className='availableColor'></p> Available: {availableTablesCount}  </span>
+          <span className='color'><p className='reservedColor'></p>  Reserved: {reservedTablesCount} </span>
         </div>
       </div>
       <div className="tables-grid">
         {tables.map((table) => (
           <div
             key={table.id}
-            onClick={() => toggleStatus(table.id)}
-            className={`table ${table.status === 'available' ? 'available-bg' : 'unavailable-bg'} cursor-pointer`}
+            className={`table ${table.status === 'available' ? 'available-bg' : 'reserved-bg'}`}
           >
             Table<br />{String(table.name).replace('Table ', '').padStart(2, '0')}
           </div>
