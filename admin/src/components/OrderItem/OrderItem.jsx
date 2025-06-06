@@ -57,6 +57,19 @@ const OrderItem = ({ order, tableInfo, displayOrderId }) => {
   //   );
   // };
 
+
+  const toISTTimeString = (isoString) => {
+  if (!isoString) return "";
+  const date = new Date(isoString);
+  return date.toLocaleTimeString("en-IN", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+    timeZone: "Asia/Kolkata", // Force IST timezone
+  });
+};
+
+
   useEffect(() => {
       console.log("useEffect triggered", order);
     if (!order?.orderCreatedAt) return;
@@ -145,7 +158,7 @@ const OrderItem = ({ order, tableInfo, displayOrderId }) => {
               {displayOrderId}{" "}
             </p>
             <p>Table-{tableInfo || "N/A"}</p>
-            <p>{order.orderTime}</p>
+            <p>{toISTTimeString(order.orderCreatedAt)}</p>
             <h4 className="totalitem">{getTotalItems()} Item</h4>
           </div>
           <div
