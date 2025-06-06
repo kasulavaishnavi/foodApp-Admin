@@ -69,10 +69,13 @@ const createOrder = async (req, res) => {
   try {
     const { table, items, orderType, status, totalAmount } = req.body;
 
-     const lastOrder = await Order.findOne().sort({ createdAt: -1 });
+  const lastOrder = await Order.findOne().sort({ createdAt: -1 });
+    // Parses the last orderId to an integer, defaults to 0 if no orders exist
     const lastOrderId = lastOrder ? parseInt(lastOrder.orderId) : 0;
 
+    // Generates the new order ID, incrementing the last ID and padding with leading zeros to '001' format
     const newOrderId = (lastOrderId + 1).toString().padStart(3, '0');
+
 
     const newOrder = new Order({
       orderId : newOrderId,
