@@ -1,10 +1,7 @@
 const Order = require("../../models/orderDetails");
 
 // Convert UTC to IST
-const toIST = (utcDate) => {
-  const istOffset = 5.5 * 60 * 60 * 1000; // IST = UTC+5:30
-  return new Date(new Date(utcDate).getTime() + istOffset);
-};
+
 
 // ✅ Fetch all orders (latest first) and format for admin panel
 const listOrders = async (req, res) => {
@@ -12,7 +9,7 @@ const listOrders = async (req, res) => {
     const ordersFromDB = await Order.find().sort({ createdAt: -1 });
 
     const formattedOrders = ordersFromDB.map(order => {
-      const createdAtIST = toIST(order.createdAt);
+     const createdAt = new Date(order.createdAt); // already UTC
       const itemCount = order.items.reduce((sum, item) => sum + item.quantity, 0);
 
       // Time-based status calculation
@@ -43,12 +40,12 @@ const listOrders = async (req, res) => {
         orderId: order.orderId ? `#${order.orderId}` : "#N/A",
         orderType: order.orderType,
         table: order.orderType === "Dine In" ? order.table : "N/A",
-        orderTime: createdAtIST.toLocaleTimeString('en-IN', {
+        orderTime: createdAt.toLocaleTimeString('en-IN', {
           hour: '2-digit',
           minute: '2-digit',
           hour12: true
         }),
-        orderCreatedAt: createdAtIST.toISOString(),
+        orderCreatedAt: order.createdAt,
         itemCount: itemCount,
         items: order.items.map(item => ({
           quantity: item.quantity,
