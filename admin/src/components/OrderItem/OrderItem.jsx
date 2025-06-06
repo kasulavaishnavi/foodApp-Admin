@@ -59,9 +59,9 @@ const OrderItem = ({ order, tableInfo, displayOrderId }) => {
 
   useEffect(() => {
       console.log("useEffect triggered", order);
-    if (!order?.orderCreatedAt) return;
+    if (!order?.orderTime) return;
 
-    const createdAt = new Date(order.orderCreatedAt);
+    const createdAt = new Date(order.orderTime);
     console.log("Parsed Order Time:", createdAt);
 
     if (!createdAt) {
