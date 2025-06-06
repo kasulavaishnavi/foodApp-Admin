@@ -34,8 +34,8 @@ const OrderItem = ({ order, tableInfo, displayOrderId }) => {
     return calculatedTime;
   };
 
-  const totalPreparationTime = calculateOrderPreparationTime();
-  const [remainingTime, setRemainingTime] = useState(totalPreparationTime);
+  // const totalPreparationTime = calculateOrderPreparationTime();
+  const [remainingTime, setRemainingTime] = useState(calculateOrderPreparationTime());
   const [statusText, setStatusText] = useState("Processing");
   const [pickupStatus, setPickupStatus] = useState("");
 
@@ -68,30 +68,31 @@ const OrderItem = ({ order, tableInfo, displayOrderId }) => {
       return;
     }
 
-    const calculatePreparationTime = () => {
-      let calculatedTime = 0;
-      const items = getOrderItems();
+    // const calculatePreparationTime = () => {
+    //   let calculatedTime = 0;
+    //   const items = getOrderItems();
 
-      items.forEach((orderItem) => {
-        const foodItem = food_list.find(
-          (item) => item.name.toLowerCase() === orderItem.name.toLowerCase()
-        );
-        if (foodItem) {
-          const menuItem = menu_list.find(
-            (item) => item.menu_name === foodItem.category
-          );
-          if (menuItem) {
-            calculatedTime += menuItem.time * orderItem.quantity;
-          }
-        }
-      });
+    //   items.forEach((orderItem) => {
+    //     const foodItem = food_list.find(
+    //       (item) => item.name.toLowerCase() === orderItem.name.toLowerCase()
+    //     );
+    //     if (foodItem) {
+    //       const menuItem = menu_list.find(
+    //         (item) => item.menu_name === foodItem.category
+    //       );
+    //       if (menuItem) {
+    //         calculatedTime += menuItem.time * orderItem.quantity;
+    //       }
+    //     }
+    //   });
 
-      return calculatedTime;
-    };
+    //   return calculatedTime;
+    // };
 
     const updateTime = () => {
       const now = new Date();
       const elapsed = Math.floor((now - createdAt) / 60000);
+      const totalPreparationTime = calculateOrderPreparationTime();
       const remaining = Math.max(totalPreparationTime - elapsed, 0);
       console.log("Elapsed:", elapsed, "Remaining:", remaining);
 
