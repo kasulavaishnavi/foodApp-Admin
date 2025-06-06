@@ -68,10 +68,14 @@ const listOrders = async (req, res) => {
 const createOrder = async (req, res) => {
   try {
     const { table, items, orderType, status, totalAmount } = req.body;
-    const orderId = Date.now() + Math.floor(Math.random() * 1000);
+
+     const lastOrder = await Order.findOne().sort({ createdAt: -1 });
+    const lastOrderId = lastOrder ? parseInt(lastOrder.orderId) : 0;
+
+    const newOrderId = (lastOrderId + 1).toString().padStart(3, '0');
 
     const newOrder = new Order({
-      orderId,
+      orderId : newOrderId,
       table,
       items,
       orderType,
