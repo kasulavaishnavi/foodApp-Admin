@@ -98,8 +98,8 @@ useEffect(() => {
     itemsToCart,
     removeFromCart,
     totalCartAmount,
-    filteredFoodList, // Expose the filtered list
-    setFilteredFoodList, // Expose the function to update the filtered list (though handleSearch is better)
+    filteredFoodList,
+    setFilteredFoodList,
     handleSearch,
     clearSearch, 
   };

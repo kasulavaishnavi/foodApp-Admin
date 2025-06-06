@@ -1,30 +1,37 @@
 const Order = require("../../models/orderDetails");
 
+// Convert UTC to IST
+const toIST = (utcDate) => {
+  const istOffset = 5.5 * 60 * 60 * 1000; // IST = UTC+5:30
+  return new Date(new Date(utcDate).getTime() + istOffset);
+};
+
 // ✅ Fetch all orders (latest first) and format for admin panel
 const listOrders = async (req, res) => {
   try {
-    const ordersFromDB = await Order.find().sort({ createdAt: -1 }); // .lean() for plain JS objects
+    const ordersFromDB = await Order.find().sort({ createdAt: -1 });
 
     const formattedOrders = ordersFromDB.map(order => {
-      // Calculate total item count
+      const createdAtIST = toIST(order.createdAt);
       const itemCount = order.items.reduce((sum, item) => sum + item.quantity, 0);
+
+      // Time-based status calculation
+      const now = new Date();
+      const diffInMinutes = Math.round((now - new Date(createdAtIST)) / (1000 * 60));
+      let actionButtonText = "";
+      let actionButtonIcon = "";
+      let statusDetails = "";
 
       switch (order.status) {
         case "Processing":
           actionButtonText = "Processing";
-          actionButtonIcon = "hourglass"; 
-         const now = new Date();
-    const createdAt = new Date(order.createdAt);
-    const diffInMinutes = Math.round((now - createdAt) / (1000 * 60));
-          statusDetails = `${diffInMinutes} Min`; 
+          actionButtonIcon = "hourglass";
+          statusDetails = `${diffInMinutes} Min`;
           break;
         case "Served":
-          actionButtonText = "Order Done";
-          actionButtonIcon = "check-circle"; 
-          break;
         case "Not Picked up":
           actionButtonText = "Order Done";
-          actionButtonIcon = "check-circle"; 
+          actionButtonIcon = "check-circle";
           break;
         default:
           actionButtonText = "Update Status";
@@ -33,16 +40,24 @@ const listOrders = async (req, res) => {
       }
 
       return {
-       orderId: order.orderId ? `#${order.orderId}` : "#N/A", 
+        orderId: order.orderId ? `#${order.orderId}` : "#N/A",
         orderType: order.orderType,
         table: order.orderType === "Dine In" ? order.table : "N/A",
-        orderTime: new Date(order.createdAt).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true }), 
+        orderTime: createdAtIST.toLocaleTimeString('en-IN', {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: true
+        }),
+        orderCreatedAt: createdAtIST.toISOString(),
         itemCount: itemCount,
-        items: order.items.map(item => ({ quantity: item.quantity, name: item.name })),
+        items: order.items.map(item => ({
+          quantity: item.quantity,
+          name: item.name
+        })),
         status: order.status,
-        statusDetails: statusDetails,
-        actionButtonText: actionButtonText,
-        actionButtonIcon: actionButtonIcon
+        statusDetails,
+        actionButtonText,
+        actionButtonIcon
       };
     });
 
@@ -55,17 +70,17 @@ const listOrders = async (req, res) => {
 
 const createOrder = async (req, res) => {
   try {
-    const { table, time, items, orderType, status, totalAmount } = req.body;
-    const orderId = Date.now() + Math.floor(Math.random() * 1000); 
+    const { table, items, orderType, status, totalAmount } = req.body;
+    const orderId = Date.now() + Math.floor(Math.random() * 1000);
 
     const newOrder = new Order({
       orderId,
       table,
-      time,
       items,
       orderType,
       status,
       totalAmount,
+
     });
 
     await newOrder.save();

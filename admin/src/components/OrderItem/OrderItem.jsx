@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUtensils,faCircleCheck,faHourglassEnd } from "@fortawesome/free-solid-svg-icons";
 
 const OrderItem = ({ order, tableInfo, displayOrderId }) => {
+  console.log("Incoming order:", order);
+
   const getOrderItems = () => order.items || [];
 
   const calculateOrderPreparationTime = () => {
@@ -37,28 +39,29 @@ const OrderItem = ({ order, tableInfo, displayOrderId }) => {
   const [statusText, setStatusText] = useState("Processing");
   const [pickupStatus, setPickupStatus] = useState("");
 
-  const parseOrderTime = (timeStr) => {
-    if (!timeStr) return null;
-    const [time, meridian] = timeStr.split(" ");
-    let [hours, minutes] = time.split(":").map(Number);
+  // const parseOrderTime = (timeStr) => {
+  //   if (!timeStr) return null;
+  //   const [time, meridian] = timeStr.split(" ");
+  //   let [hours, minutes] = time.split(":").map(Number);
 
-    if (meridian === "PM" && hours !== 12) hours += 12;
-    if (meridian === "AM" && hours === 12) hours = 0;
+  //   if (meridian === "PM" && hours !== 12) hours += 12;
+  //   if (meridian === "AM" && hours === 12) hours = 0;
 
-    const now = new Date();
-    return new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      now.getDate(),
-      hours,
-      minutes
-    );
-  };
+  //   const now = new Date();
+  //   return new Date(
+  //     now.getFullYear(),
+  //     now.getMonth(),
+  //     now.getDate(),
+  //     hours,
+  //     minutes
+  //   );
+  // };
 
   useEffect(() => {
-    if (!order?.orderTime) return;
+      console.log("useEffect triggered", order);
+    if (!order?.orderCreatedAt) return;
 
-    const createdAt = parseOrderTime(order.orderTime);
+    const createdAt = new Date(order.orderCreatedAt);
     console.log("Parsed Order Time:", createdAt);
 
     if (!createdAt) {
@@ -107,8 +110,10 @@ const OrderItem = ({ order, tableInfo, displayOrderId }) => {
 
     updateTime(); // initial run
     const interval = setInterval(updateTime, 60000); // update every minute
+      console.log("Parsed Order Time:", createdAt);
+
     return () => clearInterval(interval);
-  }, [order.orderTime, order.orderType, pickupStatus, order]);
+  }, [order.orderCreatedAt, order.orderType, pickupStatus, order]);
 
   const handleDropdownChange = (e) => {
     setPickupStatus(e.target.value);
@@ -138,7 +143,7 @@ const OrderItem = ({ order, tableInfo, displayOrderId }) => {
               {displayOrderId}{" "}
             </p>
             <p>Table-{tableInfo || "N/A"}</p>
-            <p>{order.orderTime}</p>
+            <p>{order.orderCreatedAt}</p>
             <h4 className="totalitem">{getTotalItems()} Item</h4>
           </div>
           <div
