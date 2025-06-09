@@ -127,7 +127,7 @@ fetchList()
           <p>Item Category</p>
           <select onChange={HandleChange} value={data.category} name="category">
             <option value="Select">Select</option>
-            <option value="French Fries">French Fries</option>
+            <option value="Fries">Fries</option>
             <option value="Salad">Salad</option>
             <option value="Coffee">Coffee</option>
             <option value="Sandwich">Sandwich</option>
