@@ -8,7 +8,7 @@ const listOrders = async (req, res) => {
   try {
     const ordersFromDB = await Order.find().sort({ createdAt: 1 });
 
-    const formattedOrders = ordersFromDB.map(order => {
+    const formattedOrders = ordersFromDB.map((order , index) => {
      const createdAt = new Date(order.createdAt); // already UTC
       const itemCount = order.items.reduce((sum, item) => sum + item.quantity, 0);
 
