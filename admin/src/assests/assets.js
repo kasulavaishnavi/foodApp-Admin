@@ -101,7 +101,7 @@ export const menu_list = [
     time:10
   },
   {
-    menu_name: "Fries",
+    menu_name: "French Fries",
     menu_image: fries_logo,
     time:10
   },
@@ -246,28 +246,28 @@ export const food_list = [
     name: "French Fries with Sausage",
     image: sausage,
     price: 140,
-    category: "Fries",
+    category: "French Fries",
   },
   {
     _id: "16",
     name: "French Fries with Melted Cheese",
     image: melted_cheese,
     price: 150,
-    category: "Fries",
+    category: "French Fries",
   },
   {
     _id: "17",
     name: "Chicken Courgtte",
     image: chicken_courgette,
     price: 170,
-    category: "Fries",
+    category: "French Fries",
   },
   {
     _id: "18",
     name: "Peri Peri Fries",
     image: peri_peri,
     price: 180,
-    category: "Fries",
+    category: "French Fries",
   },
   {
     _id: "19",
