@@ -8,6 +8,14 @@ dotenv.config();
 
 const app = express();
 app.use(cors());
+const allowedOrigins = [
+  "https://foodappclient1.onrender.com",
+  "https://foodapp-admin-cola.onrender.com"
+];
+
+app.use(cors({
+  origin: allowedOrigins
+}));
 
 // Middleware
 app.use(express.json());

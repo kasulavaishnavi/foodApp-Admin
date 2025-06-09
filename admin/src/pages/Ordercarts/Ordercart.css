@@ -31,5 +31,10 @@ gap: 30px;
 
 }
 
-
+.ordersContainer .input{
+  height: 40px;
+  width: 13vw;
+  border: none;
+  border-radius: 10px;
+}
 

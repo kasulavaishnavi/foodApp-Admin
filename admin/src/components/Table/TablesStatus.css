@@ -40,12 +40,12 @@
 }
 
 .tables-grid .table.available-bg {
-  background-color: #3DC35F; 
+  background-color: #ffffff; 
   color: #000000; 
 }
 
-.tables-grid .table.unavailable-bg {
-  background-color: #ffffff; 
+.tables-grid .table.reserved-bg{
+  background-color: #3DC35F; 
   color: #000000; 
 }
 .counts{
@@ -71,7 +71,7 @@
 .reservedColor{
   width: 9px;
   height: 9px;
-  background-color: #3DC35F;
+  background-color:  #3DC35F;
   border-radius: 50%;
 }
 
