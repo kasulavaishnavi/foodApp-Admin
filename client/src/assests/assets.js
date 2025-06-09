@@ -103,7 +103,7 @@ export const menu_list = [
     time:10
   },
   {
-    menu_name: "Fries",
+    menu_name: "French Fries",
     menu_image: fries_logo,
     time:10
   },
