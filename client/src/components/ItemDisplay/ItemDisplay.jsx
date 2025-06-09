@@ -18,7 +18,7 @@ const ItemDisplay = ({category}) => {
      <div className="item-display" id="item-display">
         {itemsToDisplay.map(item => (
           <div key={item._id} className="item-card">
-            <img src={url+"/images/"+item.image} alt={item.name} className="item-img" />
+            <img src={item.image} alt={item.name} className="item-img" />
             <div className="item-info">
               <h3>{item.name}</h3>
               <h5>₹{item.price} <ItemCounter id={item._id} /></h5>
