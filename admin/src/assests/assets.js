@@ -4,8 +4,6 @@ import add_icon_white from "./add_icon_white.png";
 import add_icon_green from "./add_icon_green.png";
 import remove_icon_red from "./remove_icon_red.png";
 import cross_icon from "./cross_icon.png";
-import selector_icon from "./selector_icon.png";
-import confirmed from "./confirmed.jpg";
 
 import burger_logo from "./burger logo.png";
 import vegan_burger from "./-vegan-burger.avif";
@@ -399,7 +397,7 @@ export const food_list = [
   },
   {
     _id: "37",
-    name: "Double Chees",
+    name: "Double Cheese",
     image: double_cheese,
     price: 220,
     category: "Burger",

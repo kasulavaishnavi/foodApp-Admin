@@ -6,7 +6,7 @@ const Order = require("../../models/orderDetails");
 // ✅ Fetch all orders (latest first) and format for admin panel
 const listOrders = async (req, res) => {
   try {
-    const ordersFromDB = await Order.find().sort({ createdAt: -1 });
+    const ordersFromDB = await Order.find().sort({ createdAt: 1 });
 
     const formattedOrders = ordersFromDB.map((order , index) => {
      const createdAt = new Date(order.createdAt); // already UTC

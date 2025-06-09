@@ -38,7 +38,7 @@ const OrderCarts = () => {
       <h2>Order Line</h2>
       <div className="Mainorder">
       <div className="SubContainer">
-      {filteredOrders . sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+      {filteredOrders.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
   .map((order, idx) => (
         <OrderItem key={order._id} order={order} tableInfo={order.table}  />
       ))}

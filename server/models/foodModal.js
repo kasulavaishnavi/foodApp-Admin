@@ -13,6 +13,7 @@ const itemSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    cloudinary_id : String,
     category:{
         type:String,
         required:true

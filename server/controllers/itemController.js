@@ -1,20 +1,22 @@
 const foodModal = require("../models/foodModal");
 const fs = require("fs");
+const cloudinary = require("cloudinary").v2;
 
 
 
 //add food item
 
 const addItem = async(req,res)=>{
+ try {
+    const result = await cloudinary.uploader.upload(req.file.path, { folder: "uploads" });
 
-let image_filename = `${req.file.filename}`;
 const item = new foodModal({
     name: req.body.name,
     price:req.body.price,
     category:req.body.category,
-    image:image_filename
+        image: result.secure_url,
+      cloudinary_id: result.public_id,
 })
-try{
 await item.save();
 res.json({success:true, message:"item added"})
 }catch(error){
