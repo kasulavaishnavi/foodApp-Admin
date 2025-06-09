@@ -115,7 +115,7 @@ const calculateTotalPreparationTime = () => {
             if (quantity > 0) {
               return (
                 <div key={item._id} className="itemCard">
-                  <img src={url+"/images/"+item.image} alt="img" className="itemImg" />
+                  <img src={item.image} alt="img" className="itemImg" />
                   <div className="itemInfo">
                     <div className="itemTop">
                       <h3 className="name">{item.name}</h3>
