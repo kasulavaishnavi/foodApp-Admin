@@ -23,10 +23,7 @@
 touch-action: pan-y;
 }
 
-/* .swipe-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-    /* box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-} */ */
+
 
 /* Disabled state */
 .swipe-button.disabled {
@@ -51,14 +48,13 @@ touch-action: pan-y;
     align-items: center;
     position: absolute;
     top: 10px;
-    left: 5px; /* Initial fixed position */
-    /* REMOVE the CSS transition here; JS will handle position */
-    transition: box-shadow 0.2s ease; /* Only transition shadow */
+    left: 5px;
+    transition: box-shadow 0.2s ease; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .swipe-button.is-dragging .circle {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Enhanced shadow when dragging */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
 }
 
 .swipe-button .arrow-icon {
@@ -74,23 +70,23 @@ touch-action: pan-y;
     font-size: 18px;
     font-weight: bold;
     text-align: center;
-    transition: opacity 0.3s ease-out, transform 0.3s ease-out; /* Adjusted transition for smoother hide */
-    padding-left: 20px; /* Make space for the initial circle */
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    padding-left: 20px;
 }
 
 /* State when button is successfully swiped */
 .swipe-button.swiped .arrow-icon {
-    transform: translateX(100px); /* Move arrow out of view */
+    transform: translateX(100px);
     opacity: 0;
 }
 
 .swipe-button.swiped .swipe-text {
-    opacity: 0; /* Fade out text */
-    transform: translateX(-50px); /* Move text slightly left */
+    opacity: 0; 
+    transform: translateX(-50px); 
 }
 
 .swipe-button.swiped {
-    background-color: #28a745; /* Green for success */
+    background-color: #28a745;
     box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
-    cursor: default; /* Change cursor back */
+    cursor: default; 
 }
