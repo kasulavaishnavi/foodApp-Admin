@@ -133,6 +133,7 @@ const UserInfo = ({
 
   return (
     <div className="user-info-container">
+      <>
       {showForm ? (
         <form onSubmit={createForm} className="user-form">
           <h3 className="label">Your Details</h3>
@@ -283,6 +284,7 @@ const UserInfo = ({
           )}
         </div>
       )}
+    </>
 <SwipeOrder
   mostRecentUserInfo={mostRecentUserInfo}
   showForm={showForm}
