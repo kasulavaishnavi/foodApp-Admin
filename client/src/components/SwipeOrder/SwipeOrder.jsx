@@ -64,7 +64,7 @@ const SwipeOrder = ({
           width: circleWidth,
           height: circleWidth,
           borderRadius: "50%",
-          backgroundColor: "#949494" ? "green" : "#333",
+          backgroundColor: "#949494",
           position: "absolute",
           top: 5,
           left: circleLeft,
