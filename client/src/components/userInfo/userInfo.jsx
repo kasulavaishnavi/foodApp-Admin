@@ -283,10 +283,14 @@ const UserInfo = ({
           )}
         </div>
       )}
-      <SwipeOrder
-  onSuccess={() => sendOrderToBackend(mostRecentUserInfo)}
-  disabled={!mostRecentUserInfo || showForm}
+<SwipeOrder
+  mostRecentUserInfo={mostRecentUserInfo}
+  showForm={showForm}
+  sendOrderToBackend={() => sendOrderToBackend(mostRecentUserInfo)}
+  navigate={navigate}
+  setSwiped={setSwiped}
 />
+
 
     </div>
   );

@@ -45,20 +45,20 @@ const SwipeOrder = ({
   };
 
   return (
-    <div
-      style={{
-        width: buttonWidth,
-        height: 60,
-        borderRadius: 30,
-        backgroundColor: "#ddd",
-        position: "relative",
-        overflow: "hidden",
-        touchAction: "pan-y",
-      }}
-      className="swipe-button"
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-    >
+ <div
+  style={{
+    width: buttonWidth,
+    height: 60,
+    borderRadius: 30,
+    position: "relative",
+    overflow: "hidden",
+    touchAction: "pan-y",
+  }}
+  className={`swipe-button ${!mostRecentUserInfo || showForm ? "disabled" : "active"}`}
+  onTouchStart={handleTouchStart}
+  onTouchEnd={handleTouchEnd}
+>
+
       <div
         style={{
           width: circleWidth,
