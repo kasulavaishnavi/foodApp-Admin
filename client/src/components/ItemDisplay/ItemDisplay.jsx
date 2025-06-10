@@ -1,9 +1,16 @@
-import React, { useContext,  } from "react";
+import React, { useState,useContext,  } from "react";
 import "./ItemDisplay.css";
 import { ItemContext } from "../../context/itemsContext/itemsContext";
 import ItemCounter from "../Counter/ItemCounter";
+import { useNavigate } from "react-router-dom";
+
 
 const ItemDisplay = ({category}) => {
+    const [swiped, setSwiped] = useState(false);
+      const [mostRecentUserInfo, setMostRecentUserInfo] = useState(null);
+    
+      const navigate = useNavigate();
+    
   const url = "https://foodapp-server-t1i3.onrender.com";
   const { food_list, filteredFoodList } = useContext(ItemContext);
 

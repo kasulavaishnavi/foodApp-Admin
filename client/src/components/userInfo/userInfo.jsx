@@ -3,10 +3,17 @@ import axios from "axios";
 import "./userInfo.css";
 import { FaClock, FaMapMarkerAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import SwipeOrder from "../SwipeOrder/SwipeOrder";
 
-const UserInfo = ({ selectedChoice, totalPreparationTime, sendOrderToBackend = () => {}, cart = {}, // Pass cart if needed
-  food_list = {},setTableNumber = () => {}, 
-  tableNumber = "",  }) => {
+const UserInfo = ({
+  selectedChoice,
+  totalPreparationTime,
+  sendOrderToBackend = () => {},
+  cart = {}, // Pass cart if needed
+  food_list = {},
+  setTableNumber = () => {},
+  tableNumber = "",
+}) => {
   const navigate = useNavigate();
 
   console.log(
@@ -41,14 +48,14 @@ const UserInfo = ({ selectedChoice, totalPreparationTime, sendOrderToBackend = (
     setForm((prevForm) => ({
       ...prevForm,
       orderType: selectedChoice,
-     street: selectedChoice === "Dine In" ? "" : prevForm.street,
+      street: selectedChoice === "Dine In" ? "" : prevForm.street,
       city: selectedChoice === "Dine In" ? "" : prevForm.city,
       state: selectedChoice === "Dine In" ? "" : prevForm.state,
       zipCode: selectedChoice === "Dine In" ? "" : prevForm.zipCode,
       country: selectedChoice === "Dine In" ? "" : prevForm.country,
     }));
-      if (selectedChoice !== "Dine In") {
-        setTableNumber("");
+    if (selectedChoice !== "Dine In") {
+      setTableNumber("");
     }
     setMostRecentUserInfo(null);
     setShowForm(true);
@@ -63,7 +70,7 @@ const UserInfo = ({ selectedChoice, totalPreparationTime, sendOrderToBackend = (
     });
   };
 
-    const handleTableNumberChange = (e) => {
+  const handleTableNumberChange = (e) => {
     setTableNumber(e.target.value); // Update the tableNumber state in the Cart component
   };
 
@@ -71,21 +78,24 @@ const UserInfo = ({ selectedChoice, totalPreparationTime, sendOrderToBackend = (
   const createForm = async (e) => {
     e.preventDefault();
     console.log("Sending form data:", form);
-        const payload = {
-        ...form,
-        ...(selectedChoice === "Dine In" && { table: tableNumber }), 
+    const payload = {
+      ...form,
+      ...(selectedChoice === "Dine In" && { table: tableNumber }),
     };
     console.log("Sending UserInfo form data:", payload);
 
     try {
       // Send the form data to the backend
-      const res = await axios.post("https://foodapp-server-t1i3.onrender.com/api/food", payload);
+      const res = await axios.post(
+        "https://foodapp-server-t1i3.onrender.com/api/food",
+        payload
+      );
       // console.log("Received response data:", res.data);
-     setMostRecentUserInfo(JSON.parse(JSON.stringify(payload)));
+      setMostRecentUserInfo(JSON.parse(JSON.stringify(payload)));
 
       setShowForm(false);
       setForm({
-        orderType: selectedChoice,// Corrected casing
+        orderType: selectedChoice, // Corrected casing
         name: "",
         number: "",
         street: "",
@@ -96,7 +106,6 @@ const UserInfo = ({ selectedChoice, totalPreparationTime, sendOrderToBackend = (
       });
     } catch (error) {
       console.error("Error creating form:", error);
-
     }
   };
 
@@ -119,11 +128,8 @@ const UserInfo = ({ selectedChoice, totalPreparationTime, sendOrderToBackend = (
       setShowForm(true);
     }
   };
-console.log("UserInfo.jsx - Rendering with selectedChoice:", selectedChoice);
-// setForm(JSON.parse(JSON.stringify(mostRecentUserInfo)));
-
-
-
+  console.log("UserInfo.jsx - Rendering with selectedChoice:", selectedChoice);
+  // setForm(JSON.parse(JSON.stringify(mostRecentUserInfo)));
 
   return (
     <div className="user-info-container">
@@ -243,11 +249,21 @@ console.log("UserInfo.jsx - Rendering with selectedChoice:", selectedChoice);
               {mostRecentUserInfo.orderType === "Take Away" && (
                 <p className="delivery-address">
                   <FaMapMarkerAlt color="#4AB425" /> Delivery at Home - Flat no:
-                  {mostRecentUserInfo.street ? ` ${mostRecentUserInfo.street},` : ""}
-                  {mostRecentUserInfo.city ? ` ${mostRecentUserInfo.city},` : ""}
-                  {mostRecentUserInfo.state ? ` ${mostRecentUserInfo.state},` : ""}
-                  {mostRecentUserInfo.zipCode ? ` ${mostRecentUserInfo.zipCode},` : ""}
-                  {mostRecentUserInfo.country ? ` ${mostRecentUserInfo.country}` : ""}
+                  {mostRecentUserInfo.street
+                    ? ` ${mostRecentUserInfo.street},`
+                    : ""}
+                  {mostRecentUserInfo.city
+                    ? ` ${mostRecentUserInfo.city},`
+                    : ""}
+                  {mostRecentUserInfo.state
+                    ? ` ${mostRecentUserInfo.state},`
+                    : ""}
+                  {mostRecentUserInfo.zipCode
+                    ? ` ${mostRecentUserInfo.zipCode},`
+                    : ""}
+                  {mostRecentUserInfo.country
+                    ? ` ${mostRecentUserInfo.country}`
+                    : ""}
                 </p>
               )}
               {mostRecentUserInfo.orderType === "Dine In" && (
@@ -268,17 +284,17 @@ console.log("UserInfo.jsx - Rendering with selectedChoice:", selectedChoice);
         </div>
       )}
       <div
-        className={`swipe-button ${!mostRecentUserInfo || showForm ? "disabled" : ""} ${swiped ? "swiped" : ""}`}
-        onClick={() => {
-          if (mostRecentUserInfo && !showForm) {
-            setSwiped(true);
-            setTimeout(() => {
-              sendOrderToBackend();
-              navigate("/placeorder");
-            }, 700);
-          }
-        }}
+        className={`swipe-button ${
+          !mostRecentUserInfo || showForm ? "disabled" : ""
+        } ${swiped ? "swiped" : ""}`}
       >
+        <SwipeOrder
+          mostRecentUserInfo={mostRecentUserInfo}
+          showForm={showForm}
+          sendOrderToBackend={sendOrderToBackend}
+          navigate={navigate}
+          setSwiped={setSwiped}
+        />
         <div className="circle">
           <span className="arrow-icon">→</span>
         </div>

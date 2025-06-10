@@ -200,7 +200,7 @@ const calculateTotalPreparationTime = () => {
        sendOrderToBackend={sendOrderToBackend}
         cart={cart}                               
   food_list={food_list}  
-   setTableNumber={setTableNumber} // <-- Pass the setter function
+   setTableNumber={setTableNumber}
         tableNumber={tableNumber}
       />
     </div>

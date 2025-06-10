@@ -1,0 +1,80 @@
+import React, { useRef, useState } from "react";
+import "./SwipeOrder.css"
+
+const SwipeOrder = ({
+  mostRecentUserInfo,
+  showForm,
+  sendOrderToBackend,
+  navigate,
+  setSwiped,
+}) => {
+  const buttonWidth = 300;
+  const circleWidth = 50;
+  const swipeThreshold = buttonWidth * 0.6;
+
+  const [swipeSuccess, setSwipeSuccess] = useState(false);
+  const [circleLeft, setCircleLeft] = useState(5);
+
+  const touchStartX = useRef(null);
+  const touchEndX = useRef(null);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    touchEndX.current = e.changedTouches[0].clientX;
+    const distance = touchEndX.current - touchStartX.current;
+
+    if (distance >= swipeThreshold && mostRecentUserInfo && !showForm) {
+      setSwipeSuccess(true);
+      setCircleLeft(buttonWidth - circleWidth - 5);
+      setSwiped(true);
+
+      // Trigger backend and navigation after delay
+      setTimeout(() => {
+        sendOrderToBackend();
+        navigate("/placeorder");
+      }, 700);
+    } else {
+      setCircleLeft(5); // reset
+    }
+  };
+
+  return (
+    <div
+      style={{
+        width: buttonWidth,
+        height: 60,
+        borderRadius: 30,
+        backgroundColor: "#ddd",
+        position: "relative",
+        overflow: "hidden",
+        touchAction: "pan-y",
+      }}
+      className="swipe-button"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      <div
+        style={{
+          width: circleWidth,
+          height: circleWidth,
+          position: "absolute",
+          top: 30,
+          left: circleLeft,
+
+          
+        }}
+        className="circle"
+      >
+
+    <span className="arrow-icon">→</span>
+    </div>
+  <span className="swipe-text">Swipe to Order</span>
+
+    </div>
+  );
+};
+
+export default SwipeOrder;

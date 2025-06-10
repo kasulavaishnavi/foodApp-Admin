@@ -1,0 +1,96 @@
+/* Container for the button, adjust as needed */
+.swipe-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.swipe-button {
+    background-color: #D9D9D9; /* Primary blue color */
+    border-radius: 30px; /* Half of height for pill shape */
+    display: flex;
+    align-items: center;
+    position: relative; /* For absolute positioning of circle */
+    overflow: hidden; /* Hide overflowing circle during animation */
+    cursor: grab; /* Indicate it's draggable/interactable */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    -webkit-user-select: none; /* Prevent text selection */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+touch-action: pan-y;
+}
+
+/* .swipe-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    /* box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+} */ */
+
+/* Disabled state */
+.swipe-button.disabled {
+    background-color: #cccccc; /* Grayed out */
+    cursor: not-allowed;
+    pointer-events: none; /* Disable all pointer events */
+}
+
+/* Active drag state for the button */
+.swipe-button.is-dragging {
+    cursor: grabbing;
+}
+
+
+.swipe-button .circle {
+    width: 50px;
+    height: 50px;
+    background-color: #949494;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    left: 5px; /* Initial fixed position */
+    /* REMOVE the CSS transition here; JS will handle position */
+    transition: box-shadow 0.2s ease; /* Only transition shadow */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.swipe-button.is-dragging .circle {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Enhanced shadow when dragging */
+}
+
+.swipe-button .arrow-icon {
+    font-size: 30px;
+    font-weight: 800;
+    color: black;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.swipe-button .swipe-text {
+    flex-grow: 1;
+    color: #949494;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out; /* Adjusted transition for smoother hide */
+    padding-left: 20px; /* Make space for the initial circle */
+}
+
+/* State when button is successfully swiped */
+.swipe-button.swiped .arrow-icon {
+    transform: translateX(100px); /* Move arrow out of view */
+    opacity: 0;
+}
+
+.swipe-button.swiped .swipe-text {
+    opacity: 0; /* Fade out text */
+    transform: translateX(-50px); /* Move text slightly left */
+}
+
+.swipe-button.swiped {
+    background-color: #28a745; /* Green for success */
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
+    cursor: default; /* Change cursor back */
+}

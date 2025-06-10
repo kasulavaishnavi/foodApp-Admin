@@ -134,7 +134,7 @@ font-size:small;
   position: relative;
   width: 380px;
   height: 90px;
-  background-color:white;
+  background-color:D9D9D9;
   border-radius: 50px;
   overflow: hidden;
   display: flex;
@@ -142,7 +142,7 @@ font-size:small;
   padding-left: 10px;
   margin-top: 1px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
+  cursor: grab;
   transition: all 0.3s ease-in-out;
   border: 1px solid gray;
 }
@@ -150,7 +150,7 @@ font-size:small;
 .circle {
   width: 75px;
   height: 75px;
-  background-color: #999;
+  background-color: #949494;
   border-radius: 50%;
   position: absolute;
   left: 5px;
@@ -159,16 +159,19 @@ font-size:small;
    display: flex;
   justify-content: center;
   align-items: center;
-  color: white; /* Arrow color */
-  font-size: 24px; /* Adjust size as needed */
-  font-weight: bold; /* Make it stand out */
+  color: white; 
+  font-size: 24px;
+  font-weight: bold;
   transition: left 0.8s ease-in-out, background-color 0.9s ease-in-out;
 }
 
 .arrow-icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: black;
-  font-size: larger;
-  font-weight: bold;
+  font-size: 40px;
+  font-weight: 900;
 }
 
 .swipe-text {
@@ -176,7 +179,7 @@ font-size:small;
   text-align: center;
   font-size: 16px;
   font-weight: 600;
-  color: #b5b4b4;
+  color: #949494;
   pointer-events: none;
   z-index: 1;
   transition: color 0.4s ease-in-out
@@ -188,6 +191,7 @@ font-size:small;
 .swipe-button.disabled {
   background-color: white;
   cursor: not-allowed;
+  pointer-events: none;
 }
 
 .swipe-button.disabled .circle {
