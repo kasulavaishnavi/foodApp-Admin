@@ -295,10 +295,6 @@ const UserInfo = ({
           navigate={navigate}
           setSwiped={setSwiped}
         />
-        <div className="circle">
-          <span className="arrow-icon">→</span>
-        </div>
-        <span className="swipe-text">Swipe to Order</span>
       </div>
     </div>
   );
