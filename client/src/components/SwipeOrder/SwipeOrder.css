@@ -1,4 +1,4 @@
-/* Container for the button, adjust as needed */
+Container for the button, adjust as needed
 .swipe-button-container {
     display: flex;
     justify-content: center;
@@ -25,17 +25,6 @@ touch-action: pan-y;
 
 
 
-/* Disabled state */
-.swipe-button.disabled {
-    background-color: #cccccc; /* Grayed out */
-    cursor: not-allowed;
-    pointer-events: none; /* Disable all pointer events */
-}
-
-/* Active drag state for the button */
-.swipe-button.is-dragging {
-    cursor: grabbing;
-}
 
 
 .swipe-button .circle {
@@ -53,9 +42,6 @@ touch-action: pan-y;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.swipe-button.is-dragging .circle {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
-}
 
 .swipe-button .arrow-icon {
     font-size: 30px;
@@ -72,21 +58,4 @@ touch-action: pan-y;
     text-align: center;
     transition: opacity 0.3s ease-out, transform 0.3s ease-out;
     padding-left: 20px;
-}
-
-/* State when button is successfully swiped */
-.swipe-button.swiped .arrow-icon {
-    transform: translateX(100px);
-    opacity: 0;
-}
-
-.swipe-button.swiped .swipe-text {
-    opacity: 0; 
-    transform: translateX(-50px); 
-}
-
-.swipe-button.swiped {
-    background-color: #28a745;
-    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
-    cursor: default; 
 }
