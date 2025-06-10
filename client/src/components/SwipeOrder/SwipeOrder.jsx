@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import "./SwipeOrder.css"
+import "./SwipeOrder.css";
 
 const SwipeOrder = ({
   mostRecentUserInfo,
@@ -18,6 +18,9 @@ const SwipeOrder = ({
   const touchStartX = useRef(null);
   const touchEndX = useRef(null);
 
+  // 🔒 Prevent rendering if form is still being shown or user info not available
+  if (!mostRecentUserInfo || showForm) return null;
+
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
   };
@@ -26,7 +29,7 @@ const SwipeOrder = ({
     touchEndX.current = e.changedTouches[0].clientX;
     const distance = touchEndX.current - touchStartX.current;
 
-    if (distance >= swipeThreshold && mostRecentUserInfo && !showForm) {
+    if (distance >= swipeThreshold) {
       setSwipeSuccess(true);
       setCircleLeft(buttonWidth - circleWidth - 5);
       setSwiped(true);
@@ -60,19 +63,18 @@ const SwipeOrder = ({
         style={{
           width: circleWidth,
           height: circleWidth,
+          borderRadius: "50%",
+          backgroundColor: swipeSuccess ? "green" : "#333",
           position: "absolute",
-          top: 30,
+          top: 5,
           left: circleLeft,
-
-          
+          transition: "left 0.3s ease",
         }}
         className="circle"
       >
-
-    <span className="arrow-icon">→</span>
-    </div>
-  <span className="swipe-text">Swipe to Order</span>
-
+        <span className="arrow-icon">→</span>
+      </div>
+      <span className="swipe-text">Swipe to Order</span>
     </div>
   );
 };

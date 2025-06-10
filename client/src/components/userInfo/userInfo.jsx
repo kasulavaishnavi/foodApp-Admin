@@ -283,19 +283,11 @@ const UserInfo = ({
           )}
         </div>
       )}
-      <div
-        className={`swipe-button ${
-          !mostRecentUserInfo || showForm ? "disabled" : ""
-        } ${swiped ? "swiped" : ""}`}
-      >
-        <SwipeOrder
-          mostRecentUserInfo={mostRecentUserInfo}
-          showForm={showForm}
-          sendOrderToBackend={sendOrderToBackend}
-          navigate={navigate}
-          setSwiped={setSwiped}
-        />
-      </div>
+      <SwipeOrder
+  onSuccess={() => sendOrderToBackend(mostRecentUserInfo)}
+  disabled={!mostRecentUserInfo || showForm}
+/>
+
     </div>
   );
 };
