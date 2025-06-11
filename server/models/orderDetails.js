@@ -12,7 +12,7 @@ const orderSchema = new mongoose.Schema({
     }
   ],
   orderType: {
-    type: String, // e.g., 'Dine In', 'Take Away'
+    type: String, 
       enum: ["Dine In", "Take Away"], 
     required: true
 
@@ -22,7 +22,7 @@ const orderSchema = new mongoose.Schema({
     required: true,
   },
   status: {
-    type: String, // e.g., 'Processing', 'Served', 'Not Picked up'
+    type: String, 
      enum: ["Processing", "Served", "Not Picked up"], 
     default: "Processing"
   },

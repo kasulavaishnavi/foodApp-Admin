@@ -1,21 +1,20 @@
-
-.Main{
+.Main {
   margin: 20px;
   overflow-y: scroll;
 }
 .TableContainer {
   margin-top: 18px;
-  background-color:white;
+  background-color: white;
   width: 1150px;
   height: 87vh;
   border-radius: 10px;
 }
-.TableHeading{
-padding: 10px;  
-font-weight: 500;
+.TableHeading {
+  padding: 10px;
+  font-weight: 500;
 }
 
-.searchBar input{
+.searchBar input {
   width: 15vw;
   height: 5vh;
   border-radius: 7px;
@@ -23,49 +22,48 @@ font-weight: 500;
 }
 
 .TablesGrid {
-display: grid;
- grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 20px;
   background-color: transparent;
   padding: 20px;
 }
-.SingleTable{
- width: 85px;
+.SingleTable {
+  width: 85px;
   height: 100px;
-  background-color: #F0F5F3;
+  background-color: #f0f5f3;
   display: flex;
   flex-direction: column;
   border: 2px solid #9993;
-border-radius: 10px;
+  border-radius: 10px;
 }
 
-.TableBtn{
+.TableBtn {
   border: none;
   width: 20px;
   margin-left: 60px;
   margin-top: 6px;
 }
 
-.TableId{
+.TableId {
   font-size: 1.47rem;
   text-align: center;
   font-weight: 400;
 }
-.ChairIcon{
+.ChairIcon {
   margin-left: 45px;
   font-size: 10px;
 }
 
-
-.TableForm{
-margin-top: 25px;
-font-size: xx-large;
+.TableForm {
+  margin-top: 25px;
+  font-size: xx-large;
 }
 
-.ShowForm{
+.ShowForm {
   width: 230px;
   height: 170px;
-  background-color: #F0F5F3;
+  background-color: #f0f5f3;
   padding: 20px;
   box-shadow: 1px 3px 8px #888888;
   position: relative;
@@ -74,38 +72,38 @@ font-size: xx-large;
   position: fixed;
   top: 440px;
 }
-.FormHeading{
+.FormHeading {
   font-weight: 400;
   font-size: large;
 }
-.Formlabel{
+.Formlabel {
   font-size: medium;
 }
 
-.FormInput{
-border-radius: 10px;
-border: none;
+.FormInput {
+  border-radius: 10px;
+  border: none;
 }
 
-.FormCancelCreate{
+.FormCancelCreate {
   margin-top: 15px;
   display: flex;
   gap: 20px;
-
 }
 
-.FormCancel{
+.FormCancel {
   padding: 5px;
   border: none;
-    background-color: white;
+  background-color: white;
 }
 
-.FormCreate{
-   padding: 7px;
+.FormCreate {
+  padding: 7px;
   border: none;
-    background-color: white;
+  background-color: white;
 }
-.table-card, .add-table-card {
+.table-card,
+.add-table-card {
   width: 50px;
   height: 50px;
   background: #f1f5f4;
@@ -121,7 +119,7 @@ border: none;
 .table-form {
   position: absolute;
   background: white;
-  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   padding: 1rem;
   border-radius: 8px;
   bottom: 20px;
@@ -129,7 +127,8 @@ border: none;
   z-index: 999;
 }
 
-.table-form input, .table-form select {
+.table-form input,
+.table-form select {
   display: block;
   width: 100%;
   margin-top: 0.5rem;
@@ -143,4 +142,3 @@ border: none;
   border: none;
   border-radius: 4px;
 }
-

@@ -1,15 +1,15 @@
-import React, { createContext, useState, useEffect,useContext } from 'react';
-import { DashboardContext } from './DashBoardContext';
-import { food_list, menu_list } from '../assests/assets';
+import React, { createContext, useState, useEffect, useContext } from "react";
+import { DashboardContext } from "./DashBoardContext";
+import { food_list, menu_list } from "../assests/assets";
 
 // Create the context
 export const TableContext = createContext(null);
 
 // Create a provider component
 export const TableProvider = ({ children }) => {
-const { orders, loading } = useContext(DashboardContext);
+  const { orders, loading } = useContext(DashboardContext);
 
-     const defaultTables = Array.from({ length: 30 }, (_, i) => ({
+  const defaultTables = Array.from({ length: 30 }, (_, i) => ({
     id: i + 1,
     name: `Table ${String(i + 1).padStart(2, "0")}`,
     chairs: "03",
@@ -17,15 +17,15 @@ const { orders, loading } = useContext(DashboardContext);
   }));
 
   const [tables, setTables] = useState(defaultTables);
-   const [searchInput, setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState("");
 
-
-   const parseOrderTime = (isoString) => {
+  const parseOrderTime = (isoString) => {
     return isoString ? new Date(isoString) : null;
   };
 
   const calculateRemainingTime = (order) => {
-    if (!order || !order.orderCreatedAt || !Array.isArray(order.items)) return 0;
+    if (!order || !order.orderCreatedAt || !Array.isArray(order.items))
+      return 0;
 
     let totalPrepTime = 0;
 
@@ -34,7 +34,9 @@ const { orders, loading } = useContext(DashboardContext);
         (f) => f.name.toLowerCase() === item.name.toLowerCase()
       );
       if (foodItem) {
-        const menuItem = menu_list.find((m) => m.menu_name === foodItem.category);
+        const menuItem = menu_list.find(
+          (m) => m.menu_name === foodItem.category
+        );
         if (menuItem) {
           totalPrepTime += menuItem.time * item.quantity;
         }
@@ -44,7 +46,7 @@ const { orders, loading } = useContext(DashboardContext);
     const createdAt = parseOrderTime(order.orderCreatedAt);
     if (!createdAt) return 0;
 
-    const elapsed = Math.floor((new Date() - createdAt) / 60000); // in minutes
+    const elapsed = Math.floor((new Date() - createdAt) / 60000);
     return Math.max(totalPrepTime - elapsed, 0);
   };
 
@@ -52,7 +54,10 @@ const { orders, loading } = useContext(DashboardContext);
     if (loading || !Array.isArray(orders)) return;
 
     const updateTableStatuses = () => {
-      const updated = defaultTables.map((table) => ({ ...table, status: "available" }));
+      const updated = defaultTables.map((table) => ({
+        ...table,
+        status: "available",
+      }));
 
       orders.forEach((order) => {
         if (order.orderType === "Dine In" && order.table) {
@@ -70,19 +75,19 @@ const { orders, loading } = useContext(DashboardContext);
       setTables(updated);
     };
 
-    updateTableStatuses(); // initial run
-    const interval = setInterval(updateTableStatuses, 60000); // check every minute
+    updateTableStatuses();
+    const interval = setInterval(updateTableStatuses, 60000);
 
     return () => clearInterval(interval);
   }, [orders, loading]);
 
-   const filteredTables = searchInput
+  const filteredTables = searchInput
     ? tables.filter((table) =>
         table.name.toLowerCase().includes(searchInput.toLowerCase())
       )
     : tables;
   const contextValue = {
-    tables : filteredTables,
+    tables: filteredTables,
     setTables,
     searchInput,
     setSearchInput,

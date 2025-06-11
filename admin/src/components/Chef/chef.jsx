@@ -14,19 +14,24 @@ const ChefOrdersTable = () => {
     const chefState = chefs.map((name) => ({ name, orders: [] }));
 
     contextOrders.forEach((order, index) => {
-      const minutes = parseInt(order.statusDetails); // "89 Min" → 89
+      const minutes = parseInt(order.statusDetails);
       const currentChef =
         chefState.find((c) => c.orders.length === 0) ||
         chefState.reduce((minChef, chef) => {
-          const totalRemaining = chef.orders.reduce((sum, ord) => sum + parseInt(ord.statusDetails), 0);
-          const minTotalRemaining = minChef.orders.reduce((sum, ord) => sum + parseInt(ord.statusDetails), 0);
+          const totalRemaining = chef.orders.reduce(
+            (sum, ord) => sum + parseInt(ord.statusDetails),
+            0
+          );
+          const minTotalRemaining = minChef.orders.reduce(
+            (sum, ord) => sum + parseInt(ord.statusDetails),
+            0
+          );
           return totalRemaining < minTotalRemaining ? chef : minChef;
         });
 
       currentChef.orders.push(order);
     });
 
-    // Flatten to name + order count
     const result = chefState.map((c) => ({
       name: c.name,
       orders: c.orders.length,

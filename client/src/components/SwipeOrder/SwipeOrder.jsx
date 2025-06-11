@@ -18,7 +18,6 @@ const SwipeOrder = ({
   const touchStartX = useRef(null);
   const touchEndX = useRef(null);
 
-  // 🔒 Prevent rendering if form is still being shown or user info not available
   if (!mostRecentUserInfo || showForm) return null;
 
   const handleTouchStart = (e) => {
@@ -33,14 +32,12 @@ const SwipeOrder = ({
       setSwipeSuccess(true);
       setCircleLeft(buttonWidth - circleWidth - 5);
       setSwiped(true);
-
-      // Trigger backend and navigation after delay
       setTimeout(() => {
         sendOrderToBackend();
         navigate("/placeorder");
       }, 700);
     } else {
-      setCircleLeft(5); // reset
+      setCircleLeft(5); 
     }
   };
 

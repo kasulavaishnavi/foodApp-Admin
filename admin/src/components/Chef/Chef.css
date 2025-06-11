@@ -5,7 +5,6 @@
   margin-top: 20px;
 }
 
-
 .chef-orders-card table {
   width: 100%;
   border-collapse: collapse;
@@ -17,16 +16,14 @@
   text-align: left;
   border-bottom: 2px solid #eee;
   color: #000;
-
 }
 
 .chef-orders-card th {
   font-weight: bold;
   color: #000;
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
 }
 
 .chef-orders-card tbody tr:last-child td {
   border-bottom: none;
 }
-

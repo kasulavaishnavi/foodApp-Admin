@@ -3,7 +3,6 @@ import "./ItemCounter.css"
 import { ItemContext} from '../../context/itemsContext/itemsContext';
 
 const ItemCounter = ({id}) => {
-    // const [itemCount, setItemCount] = useState(0);
     const {cart,itemsToCart,removeFromCart} = useContext(ItemContext);
           const currentCount = cart[id] || 0;
 

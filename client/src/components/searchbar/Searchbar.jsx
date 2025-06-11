@@ -10,7 +10,7 @@ const Searchbar = () => {
     const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
     console.log("Search Term:", event.target.value);
-    handleSearch(event.target.value); // Perform search on each input change
+    handleSearch(event.target.value); 
   };
   return (
     <div>

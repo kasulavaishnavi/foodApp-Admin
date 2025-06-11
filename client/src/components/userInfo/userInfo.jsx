@@ -9,7 +9,7 @@ const UserInfo = ({
   selectedChoice,
   totalPreparationTime,
   sendOrderToBackend = () => {},
-  cart = {}, // Pass cart if needed
+  cart = {}, 
   food_list = {},
   setTableNumber = () => {},
   tableNumber = "",
@@ -24,7 +24,7 @@ const UserInfo = ({
   const [showForm, setShowForm] = useState(true);
 
   const [form, setForm] = useState({
-    orderType: selectedChoice || "Dine In", // Initialize with selectedChoice or "Dine In"
+    orderType: selectedChoice || "Dine In", 
     name: "",
     number: "",
     street: "",
@@ -38,7 +38,7 @@ const UserInfo = ({
 
   // update orderType in form state when selectedChoice changes
   useEffect(() => {
-    const newOrderType = selectedChoice; // Directly use selectedChoice (which should be "Dine In" or "Take Away")
+    const newOrderType = selectedChoice; 
     console.log(
       "selectedChoice changed to:",
       selectedChoice,
@@ -71,7 +71,7 @@ const UserInfo = ({
   };
 
   const handleTableNumberChange = (e) => {
-    setTableNumber(e.target.value); // Update the tableNumber state in the Cart component
+    setTableNumber(e.target.value); 
   };
 
   // Handler for form submission (POST request)
@@ -95,7 +95,7 @@ const UserInfo = ({
 
       setShowForm(false);
       setForm({
-        orderType: selectedChoice, // Corrected casing
+        orderType: selectedChoice, 
         name: "",
         number: "",
         street: "",
@@ -114,7 +114,7 @@ const UserInfo = ({
       setForm({
         orderType:
           mostRecentUserInfo.orderType ||
-          (selectedChoice === "Dine In" ? "Dine In" : "Take Away"), // Corrected casing
+          (selectedChoice === "Dine In" ? "Dine In" : "Take Away"), 
         name: mostRecentUserInfo.name || "",
         number: mostRecentUserInfo.number || "",
         street: mostRecentUserInfo.street || "",
@@ -124,7 +124,7 @@ const UserInfo = ({
         country: mostRecentUserInfo.country || "",
         table: mostRecentUserInfo.table || "",
       });
-      setTableNumber(mostRecentUserInfo.table || ""); // Set Cart's tableNumber state
+      setTableNumber(mostRecentUserInfo.table || ""); 
       setShowForm(true);
     }
   };

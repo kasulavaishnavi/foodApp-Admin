@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { food_list, menu_list } from "../assests/assets"; // Assuming these are correctly imported arrays
-
+import { food_list, menu_list } from "../assests/assets";
 export const DashboardContext = createContext();
 
 export const DashboardProvider = ({ children }) => {
@@ -11,17 +10,18 @@ export const DashboardProvider = ({ children }) => {
 
   // Function to calculate total revenue from orders
   const calculateTotalRevenue = (ordersData) => {
-    // Ensure ordersData is an array before attempting to reduce it
     if (!Array.isArray(ordersData)) {
-      console.warn("calculateTotalRevenue received non-array orders:", ordersData);
-      return 0; // Return 0 if data is not an array
+      console.warn(
+        "calculateTotalRevenue received non-array orders:",
+        ordersData
+      );
+      return 0;
     }
 
     return ordersData.reduce((sum, order) => {
-      // Ensure order.items is an array before attempting to reduce it
       if (!Array.isArray(order.items)) {
         console.warn("Order items is not an array for order:", order);
-        return sum; // Skip this order if its items are not an array
+        return sum;
       }
 
       const orderTotal = order.items.reduce((orderSum, item) => {
@@ -38,9 +38,11 @@ export const DashboardProvider = ({ children }) => {
 
   // Function to calculate order summary statistics
   const calculateOrderSummary = (ordersData) => {
-    // Ensure ordersData is an array before attempting to iterate over it
     if (!Array.isArray(ordersData)) {
-      console.warn("calculateOrderSummary received non-array orders:", ordersData);
+      console.warn(
+        "calculateOrderSummary received non-array orders:",
+        ordersData
+      );
       return { totalDineIn: 0, totalTakeaway: 0, totalOrdersDone: 0 };
     }
 
@@ -48,7 +50,7 @@ export const DashboardProvider = ({ children }) => {
     let totalTakeaway = 0;
     let totalOrdersDone = 0;
 
-    // Helper function to parse order time string into a Date object
+    // function to parse order time string into a Date object
     const parseOrderTime = (timeStr) => {
       if (!timeStr) return null;
       const [time, meridian] = timeStr.split(" ");
@@ -72,7 +74,6 @@ export const DashboardProvider = ({ children }) => {
 
       // Calculate preparation time
       let totalPreparationTime = 0;
-      // Ensure order.items is an array before iterating
       if (Array.isArray(order.items)) {
         order.items.forEach((orderItem) => {
           const foodItem = food_list.find(
@@ -107,51 +108,53 @@ export const DashboardProvider = ({ children }) => {
 
   // Effect hook to fetch data when the component mounts
   useEffect(() => {
-    setLoading(true); // Set loading to true at the start of fetch
+    setLoading(true);
     Promise.all([
       fetch("https://foodapp-server-t1i3.onrender.com/api/food/orders")
         .then((res) => res.json())
         .then((data) => {
-          // Validate and return data as an array for orders
           if (Array.isArray(data)) {
             return data;
           } else {
-            console.error("API /api/food/orders did not return an array:", data);
-            return []; // Return empty array to prevent TypeError
+            console.error(
+              "API /api/food/orders did not return an array:",
+              data
+            );
+            return [];
           }
         }),
       fetch("https://foodapp-server-t1i3.onrender.com/api/food")
         .then((res) => res.json())
         .then((data) => {
-          // Validate and return data as an array for user details
           if (Array.isArray(data)) {
             return data;
           } else {
-            console.error("API /api/food did not return an array for userDetails:", data);
-            return []; // Return empty array to prevent TypeError
+            console.error(
+              "API /api/food did not return an array for userDetails:",
+              data
+            );
+            return [];
           }
         }),
     ])
       .then(([ordersData, userDetailsData]) => {
         setOrders(ordersData);
         setUserDetails(userDetailsData);
-        setLoading(false); // Set loading to false after successful data fetch
+        setLoading(false);
       })
       .catch((err) => {
         console.error("Error fetching data:", err);
-        setLoading(false); // Set loading to false even if there's an error
-        // Ensure state is reset to empty arrays on error to maintain consistency
+        setLoading(false);
         setOrders([]);
         setUserDetails([]);
       });
-  }, []); // Empty dependency array means this effect runs once on mount
+  }, []);
 
-  // Compute total values based on the state. These will re-compute whenever orders or userDetails change.
   const totalRevenue = calculateTotalRevenue(orders);
   const totalOrders = orders.length;
-  // Corrected: Use 'u' for user object in map function
   const uniqueClients = new Set(userDetails.map((u) => u.number)).size;
-  const { totalDineIn, totalTakeaway, totalOrdersDone } = calculateOrderSummary(orders);
+  const { totalDineIn, totalTakeaway, totalOrdersDone } =
+    calculateOrderSummary(orders);
 
   return (
     <DashboardContext.Provider
@@ -166,7 +169,7 @@ export const DashboardProvider = ({ children }) => {
         totalTakeaway,
         totalOrdersDone,
         food_list,
-        menu_list, // Ensure menu_list is passed if other components need it
+        menu_list,
         view,
         setView,
       }}

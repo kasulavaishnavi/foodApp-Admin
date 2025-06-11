@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { menu_list, food_list } from "../../assests/assets";
 import "./OrderItem.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUtensils,faCircleCheck,faHourglassEnd } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUtensils,
+  faCircleCheck,
+  faHourglassEnd,
+} from "@fortawesome/free-solid-svg-icons";
 
 const OrderItem = ({ order, tableInfo }) => {
   console.log("Incoming order:", order);
@@ -35,43 +39,25 @@ const OrderItem = ({ order, tableInfo }) => {
   };
 
   // const totalPreparationTime = calculateOrderPreparationTime();
-  const [remainingTime, setRemainingTime] = useState(calculateOrderPreparationTime());
+  const [remainingTime, setRemainingTime] = useState(
+    calculateOrderPreparationTime()
+  );
   const [statusText, setStatusText] = useState("Processing");
   const [pickupStatus, setPickupStatus] = useState("");
 
-  // const parseOrderTime = (timeStr) => {
-  //   if (!timeStr) return null;
-  //   const [time, meridian] = timeStr.split(" ");
-  //   let [hours, minutes] = time.split(":").map(Number);
-
-  //   if (meridian === "PM" && hours !== 12) hours += 12;
-  //   if (meridian === "AM" && hours === 12) hours = 0;
-
-  //   const now = new Date();
-  //   return new Date(
-  //     now.getFullYear(),
-  //     now.getMonth(),
-  //     now.getDate(),
-  //     hours,
-  //     minutes
-  //   );
-  // };
-
-
   const toISTTimeString = (isoString) => {
-  if (!isoString) return "";
-  const date = new Date(isoString);
-  return date.toLocaleTimeString("en-IN", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-    timeZone: "Asia/Kolkata", // Force IST timezone
-  });
-};
-
+    if (!isoString) return "";
+    const date = new Date(isoString);
+    return date.toLocaleTimeString("en-IN", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+      timeZone: "Asia/Kolkata",
+    });
+  };
 
   useEffect(() => {
-      console.log("useEffect triggered", order);
+    console.log("useEffect triggered", order);
     if (!order?.orderCreatedAt) return;
 
     const createdAt = new Date(order.orderCreatedAt);
@@ -81,31 +67,10 @@ const OrderItem = ({ order, tableInfo }) => {
       return;
     }
 
-    // const calculatePreparationTime = () => {
-    //   let calculatedTime = 0;
-    //   const items = getOrderItems();
-
-    //   items.forEach((orderItem) => {
-    //     const foodItem = food_list.find(
-    //       (item) => item.name.toLowerCase() === orderItem.name.toLowerCase()
-    //     );
-    //     if (foodItem) {
-    //       const menuItem = menu_list.find(
-    //         (item) => item.menu_name === foodItem.category
-    //       );
-    //       if (menuItem) {
-    //         calculatedTime += menuItem.time * orderItem.quantity;
-    //       }
-    //     }
-    //   });
-
-    //   return calculatedTime;
-    // };
-
     const updateTime = () => {
       const now = new Date();
       const create = new Date(order.orderCreatedAt);
-      const elapsed = Math.floor((now - create)/60000);
+      const elapsed = Math.floor((now - create) / 60000);
       const totalPreparationTime = calculateOrderPreparationTime();
       const remaining = Math.max(totalPreparationTime - elapsed, 0);
       console.log("Elapsed:", elapsed, "Remaining:", remaining);
@@ -123,9 +88,9 @@ const OrderItem = ({ order, tableInfo }) => {
       }
     };
 
-    updateTime(); // initial run
-    const interval = setInterval(updateTime, 60000); // update every minute
-      console.log("Parsed Order Time:", );
+    updateTime();
+    const interval = setInterval(updateTime, 60000);
+    console.log("Parsed Order Time:");
 
     return () => clearInterval(interval);
   }, [order.orderCreatedAt, order.orderType, pickupStatus, order]);
@@ -203,11 +168,18 @@ const OrderItem = ({ order, tableInfo }) => {
           ))}
         </div>
 
-        <div className={`orderFooter ${remainingTime > 0 ? "processing" : order.orderType === "Dine In" ? "served" : "done"}`}>
+        <div
+          className={`orderFooter ${remainingTime > 0 ? "processing" : order.orderType === "Dine In" ? "served" : "done"}`}
+        >
           {remainingTime > 0 ? (
-            <div className="statusBottom processing">Processing <FontAwesomeIcon icon={faHourglassEnd} /></div>
+            <div className="statusBottom processing">
+              Processing <FontAwesomeIcon icon={faHourglassEnd} />
+            </div>
           ) : (
-            <div className="statusBottom done"> Order Done <FontAwesomeIcon icon={faCircleCheck} /></div>
+            <div className="statusBottom done">
+              {" "}
+              Order Done <FontAwesomeIcon icon={faCircleCheck} />
+            </div>
           )}
         </div>
       </div>

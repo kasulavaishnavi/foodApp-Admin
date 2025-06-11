@@ -29,13 +29,13 @@ const [food_list, setFoodList] = useState([]);
 
   const removeFromCart = (itemId) => {
     setCart((prev) => {
-      const newCart = { ...prev }; // Create a copy of the previous cart
+      const newCart = { ...prev }; 
       if (newCart[itemId] > 1) {
-        newCart[itemId] -= 1; // Decrement if count is > 1
+        newCart[itemId] -= 1; 
       } else {
-        delete newCart[itemId]; // Remove the item entirely if count is 1 (making it 0)
+        delete newCart[itemId]; 
       }
-      return newCart; // Return the updated cart
+      return newCart; 
     });
   };
 
@@ -59,7 +59,7 @@ const [food_list, setFoodList] = useState([]);
     console.log("Search Term Received in Context:", term);
   console.log("Original food_list:", food_list);
     if (!food_list) {
-      setFilteredFoodList(null); // Clear filtered list if no food_list
+      setFilteredFoodList(null);
       return;
     }
 

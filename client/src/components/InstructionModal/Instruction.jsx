@@ -1,9 +1,8 @@
-import React, { useState }  from 'react'
-import "./Instruction.css"
+import React, { useState } from "react";
+import "./Instruction.css";
 
 const Instruction = ({ onClose, onSave, initialInstructions }) => {
-
-        const [text, setText] = useState(initialInstructions || "");
+  const [text, setText] = useState(initialInstructions || "");
 
   const handleInputChange = (event) => {
     setText(event.target.value);
@@ -15,15 +14,12 @@ const Instruction = ({ onClose, onSave, initialInstructions }) => {
 
   return (
     <div className="cooking-instructions-modal-overlay">
-         <button className="close-button" onClick={onClose}>
-          X
-        </button>
+      <button className="close-button" onClick={onClose}>
+        X
+      </button>
       <div className="cooking-instructions-modal">
         <h2>Add Cooking instructions</h2>
-        <textarea
-          value={text}
-          onChange={handleInputChange}
-        />
+        <textarea value={text} onChange={handleInputChange} />
         <p className="modal-description">
           The restaurant will try its best to follow your request. However,
           refunds or cancellations in this regard won't be possible.
@@ -38,4 +34,4 @@ const Instruction = ({ onClose, onSave, initialInstructions }) => {
     </div>
   );
 };
-export default Instruction
+export default Instruction;

@@ -46,13 +46,15 @@
   cursor: pointer;
   font-weight: bold;
   border: 1px solid #999;
-  transition: background-color 0.2s, color 0.2s;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 }
 
-.table-name{
+.table-name {
   font-size: 10px;
 }
-.table-chairs{
+.table-chairs {
   font-size: small;
 }
 

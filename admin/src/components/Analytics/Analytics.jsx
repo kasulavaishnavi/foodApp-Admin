@@ -14,15 +14,14 @@ const AnalyticsCards = () => {
     useContext(DashboardContext);
   return (
     <div className="analytics-cards">
-
       <div className="card rev">
         <div className="icon">
-        <FontAwesomeIcon icon={faBowlFood} />
-      </div>
-      <div className="value val">
-        04
-        <div className="name">TOTAL CHEF</div>
-      </div>
+          <FontAwesomeIcon icon={faBowlFood} />
+        </div>
+        <div className="value val">
+          04
+          <div className="name">TOTAL CHEF</div>
+        </div>
       </div>
 
       <div className="card rev">
@@ -36,23 +35,23 @@ const AnalyticsCards = () => {
       </div>
 
       <div className="card rev">
-         <div className="icon">
-        <FontAwesomeIcon icon={faIdBadge} />
-      </div>
-      <div className="value val">
-        {totalOrders}
-        <div className="name">Total Orders</div>
-      </div>
+        <div className="icon">
+          <FontAwesomeIcon icon={faIdBadge} />
+        </div>
+        <div className="value val">
+          {totalOrders}
+          <div className="name">Total Orders</div>
+        </div>
       </div>
 
       <div className="card rev">
         <div className="icon">
-        <FontAwesomeIcon icon={faUsers} />
-      </div>
-      <div className="value val">
-        {totalClients}
-        <div className="name">Total Clients</div>
-      </div>
+          <FontAwesomeIcon icon={faUsers} />
+        </div>
+        <div className="value val">
+          {totalClients}
+          <div className="name">Total Clients</div>
+        </div>
       </div>
     </div>
   );

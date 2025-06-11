@@ -16,7 +16,7 @@ align-items: center;
 justify-content: start;
 flex-direction: row;
 height: 50px;
-width: 370px;
+width: 390px;
 background-color: #F0F5F3;
 border-radius: 10px;
 /* border: 1px solid black; */
@@ -58,10 +58,9 @@ align-items: center;
 justify-content: start;
 flex-direction: row;
 height: 50px;
-width: 300px;
+width: 340px;
 background-color: #F0F5F3;
 border-radius: 10px;
-/* border: 1px solid black; */
 margin: 20px;
 
 

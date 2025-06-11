@@ -1,9 +1,9 @@
 .SummaryCard {
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    border: 2px solid #dbd9d9;
-    padding: 20px;
-    margin: 10px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 2px solid #dbd9d9;
+  padding: 20px;
+  margin: 10px;
 }
 
 .card-header {
@@ -31,7 +31,6 @@
   margin-left: -50px;
 }
 
-
 .summary-values {
   display: flex;
   gap: 7px;
@@ -40,12 +39,12 @@
 
 .value-item {
   text-align: center;
-    height: 70px;
+  height: 70px;
   width: 95px;
   border-radius: 10px;
   background-color: white;
   padding: 10px;
-border: 2px solid #dbd9d9;
+  border: 2px solid #dbd9d9;
 }
 
 .value-item .value {
@@ -59,16 +58,15 @@ border: 2px solid #dbd9d9;
   color: #999;
 }
 
-.chart-and-progress-container{
+.chart-and-progress-container {
   /* display: flex; */
   padding-top: 20px;
 }
 
-.pie-chart-section{
+.pie-chart-section {
   padding-left: 10px;
-
 }
-.progress-bars{
+.progress-bars {
   /* margin-right: 10px; */
 }
 .progress-bars .progress-item {
@@ -91,28 +89,24 @@ border: 2px solid #dbd9d9;
   overflow: hidden;
 }
 
-
 .progress-bar .progress1 {
-  background-color: #666666; 
-   height: 100%;
+  background-color: #666666;
+  height: 100%;
   border-radius: 5px;
 }
 .progress-bar .progress2 {
-  background-color: #999999; 
-   height: 100%;
+  background-color: #999999;
+  height: 100%;
   border-radius: 5px;
 }
-
 
 .progress-bar .progress3 {
-  background-color: #CCCCCC; 
-   height: 100%;
+  background-color: #cccccc;
+  height: 100%;
   border-radius: 5px;
 }
 
-.summary-values{
+.summary-values {
   margin-top: 10px;
   margin-bottom: 0px;
 }
-
-

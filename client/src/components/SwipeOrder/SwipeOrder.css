@@ -7,16 +7,16 @@ Container for the button, adjust as needed
 }
 
 .swipe-button {
-    background-color: #D9D9D9; /* Primary blue color */
-    border-radius: 30px; /* Half of height for pill shape */
+    background-color: #D9D9D9; 
+    border-radius: 30px; 
     display: flex;
     align-items: center;
-    position: relative; /* For absolute positioning of circle */
-    overflow: hidden; /* Hide overflowing circle during animation */
-    cursor: grab; /* Indicate it's draggable/interactable */
+    position: relative; 
+    overflow: hidden; 
+    cursor: grab; 
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    -webkit-user-select: none; /* Prevent text selection */
+    -webkit-user-select: none; 
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;

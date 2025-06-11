@@ -10,16 +10,16 @@ const itemRoute = express.Router();
 cloudinary.config({
    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,    // Replace with your API Secret
+  api_secret: process.env.CLOUDINARY_API_SECRET,    
 });
 
 //image storage
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: "uploads", // optional folder name in Cloudinary
+    folder: "uploads",
     allowed_formats: ["jpg", "jpeg", "png", "avif"],
-    public_id: (req, file) => `${Date.now()}-${file.originalname}`, // optional
+    public_id: (req, file) => `${Date.now()}-${file.originalname}`,
   },
 });
 

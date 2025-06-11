@@ -1,31 +1,29 @@
 .header {
   display: flex;
-align-items: start;
-justify-content: start;
-flex-direction: column;
-padding: 6px 7px;
-margin-left: 8px;
+  align-items: start;
+  justify-content: start;
+  flex-direction: column;
+  padding: 6px 7px;
+  margin-left: 8px;
 }
 .iconCircle {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #F0F5F3; 
+  background-color: #f0f5f3;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 18px;
   color: #000;
   cursor: pointer;
-
 }
 
-
-.menuItem1 .iconCircle1{
-   width: 45px;
+.menuItem1 .iconCircle1 {
+  width: 45px;
   height: 45px;
   border-radius: 50%;
-  background-color: white; 
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,7 +32,6 @@ margin-left: 8px;
   cursor: pointer;
   margin: 10px 0px 7px 3px;
 }
-
 
 .menu {
   height: 88vh;
@@ -48,8 +45,6 @@ margin-left: 8px;
   padding: 10px;
 }
 
-.iconCircle.active{
-  background-color: #D9D9D9;
+.iconCircle.active {
+  background-color: #d9d9d9;
 }
-
-
