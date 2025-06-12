@@ -1,78 +1,68 @@
 // src/components/Tables/Tables.jsx
-import React, { useState, useContext } from "react";
-import { TableContext } from "../../Context/TableContext";
+import React, { useState, useEffect } from "react";
 import "./Tables.css";
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faChair } from "@fortawesome/free-solid-svg-icons";
 
 const Tables = () => {
-  const { tables, setTables, searchInput, setSearchInput } =
-    useContext(TableContext);
-
-  const [newTable, setNewTable] = useState({ chairs: "03" });
+  const [tables, setTables] = useState([]); // Real backend tables
+  const [newTable, setNewTable] = useState({ chairs: "01" });
   const [showForm, setShowForm] = useState(false);
 
-  const handleCreateTable = () => {
-    const newId = Date.now();
-    const newTableData = {
-      id: newId,
-      // Name table based on the current number of tables
-      name: `Table ${String(tables.length + 1).padStart(2, "0")}`,
-      chairs: newTable.chairs,
-      status: "available",
-    };
-    // Add the new table
-    const updatedTables = [...tables, newTableData];
-    // Re-index all table
-    const reindexedTables = updatedTables.map((table, index) => ({
-      ...table,
-      name: `Table ${String(index + 1).padStart(2, "0")}`,
-    }));
-    setTables(reindexedTables);
-
-    setShowForm(false);
-    setNewTable({ chairs: "01" });
+  const fetchTables = async () => {
+    try {
+      const res = await axios.get("http://localhost:4000/api/food/tables");
+      setTables(res.data);
+    } catch (err) {
+      console.error("Failed to fetch tables:", err);
+    }
   };
 
-  //deleting a table by its ID
-  const handleDeleteTable = (idToDelete) => {
-    // Filter out the table to be deleted
-    const filteredTables = tables.filter((table) => table.id !== idToDelete);
+  const handleCreateTable = async () => {
+    try {
+      const res = await axios.post("http://localhost:4000/api/food/tables", {
+        tableNumber: newTable.chairs,
+      });
 
-    // Re-index the names of the remaining tables
-    const reindexedTables = filteredTables.map((table, index) => ({
-      ...table,
-      name: `Table ${String(index + 1).padStart(2, "0")}`,
-    }));
-
-    // Update the global state with the re-indexed tables
-    setTables(reindexedTables);
+      if (res.status === 200) {
+        fetchTables(); // Refresh after adding
+        setShowForm(false);
+        setNewTable({ chairs: "01" });
+      }
+    } catch (error) {
+      console.error("Failed to create table:", error);
+    }
   };
+
+  const handleDeleteTable = async (id) => {
+    try {
+      const res = await axios.delete(`http://localhost:4000/api/food/tables/${id}`);
+      if (res.status === 200) {
+        fetchTables(); // Refresh after deletion
+      }
+    } catch (error) {
+      console.error("Failed to delete table:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTables();
+  }, []);
 
   return (
     <div className="Main">
-      <div className="searchBar">
-        <input
-          type="text"
-          placeholder="Search Table Number"
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-        />
-      </div>
       <div className="TableContainer">
         <h2 className="TableHeading">Tables</h2>
         <div className="TablesGrid">
-          {tables.map((table) => (
-            <div key={table.id} className="SingleTable">
-              <button
-                className="TableBtn"
-                onClick={() => handleDeleteTable(table.id)}
-              >
+          {tables.map((table, index) => (
+            <div key={table._id} className="SingleTable">
+              <button className="TableBtn" onClick={() => handleDeleteTable(table._id)}>
                 <FontAwesomeIcon icon={faTrash} />
               </button>
-              <div className="TableId">{table.name}</div>
+              <div className="TableId">Table {String(index + 1).padStart(2, "0")}</div>
               <small className="ChairIcon">
-                <FontAwesomeIcon icon={faChair} /> {table.chairs}
+                <FontAwesomeIcon icon={faChair} /> {table.tableNumber}
               </small>
             </div>
           ))}
@@ -92,16 +82,11 @@ const Tables = () => {
                   type="number"
                   className="FormInput"
                   value={newTable.chairs}
-                  onChange={(e) =>
-                    setNewTable({ ...newTable, chairs: e.target.value })
-                  }
+                  onChange={(e) => setNewTable({ chairs: e.target.value })}
                 />
               </label>
               <div className="FormCancelCreate">
-                <button
-                  className="FormCancel"
-                  onClick={() => setShowForm(false)}
-                >
+                <button className="FormCancel" onClick={() => setShowForm(false)}>
                   Cancel
                 </button>
                 <button className="FormCreate" onClick={handleCreateTable}>

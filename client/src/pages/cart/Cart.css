@@ -180,9 +180,9 @@
 }
 .itemTop {
   display: flex;
-  justify-content: flex-end;
+  justify-content:space-between;
   align-items: start;
-  gap: 90px;
+  gap: 70px;
   
 }
 .name {
@@ -235,13 +235,13 @@
 
 .choice {
   background-color: #e4e4e4;
-  width: 320px;
+  width: 340px;
   height: 50px;
   border-radius: 30px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  margin-left: 6px;
+  margin-left: 27px;
 }
 .dineIn,
 .takeAway {

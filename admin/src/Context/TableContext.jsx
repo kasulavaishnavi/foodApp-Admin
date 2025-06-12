@@ -1,3 +1,4 @@
+
 import React, { createContext, useState, useEffect, useContext } from "react";
 import { DashboardContext } from "./DashBoardContext";
 import { food_list, menu_list } from "../assests/assets";
@@ -9,14 +10,8 @@ export const TableContext = createContext(null);
 export const TableProvider = ({ children }) => {
   const { orders, loading } = useContext(DashboardContext);
 
-  const defaultTables = Array.from({ length: 30 }, (_, i) => ({
-    id: i + 1,
-    name: `Table ${String(i + 1).padStart(2, "0")}`,
-    chairs: "03",
-    status: "available",
-  }));
+const [tables, setTables] = useState([]);
 
-  const [tables, setTables] = useState(defaultTables);
   const [searchInput, setSearchInput] = useState("");
 
   const parseOrderTime = (isoString) => {
@@ -50,36 +45,45 @@ export const TableProvider = ({ children }) => {
     return Math.max(totalPrepTime - elapsed, 0);
   };
 
-  useEffect(() => {
-    if (loading || !Array.isArray(orders)) return;
+  const fetchTables = async () => {
+  try {
+    const res = await fetch("http://localhost:4000/api/food/tables");
+    const data = await res.json();
 
-    const updateTableStatuses = () => {
-      const updated = defaultTables.map((table) => ({
-        ...table,
-        status: "available",
-      }));
+    const updated = data.map((table) => ({
+      ...table,
+      status: "available",
+    }));
 
-      orders.forEach((order) => {
-        if (order.orderType === "Dine In" && order.table) {
-          const tableNumber = parseInt(order.table);
-          const index = updated.findIndex((t) => t.id === tableNumber);
-          if (index !== -1) {
-            const remainingTime = calculateRemainingTime(order);
-            if (remainingTime > 0) {
-              updated[index].status = "reserved";
-            }
+    // Update status based on orders
+    orders.forEach((order) => {
+      if (order.orderType === "Dine In" && order.table) {
+        const tableNumber = parseInt(order.table);
+        const index = updated.findIndex(
+          (t) => parseInt(t.tableNumber) === tableNumber
+        );
+        if (index !== -1) {
+          const remainingTime = calculateRemainingTime(order);
+          if (remainingTime > 0) {
+            updated[index].status = "reserved";
           }
         }
-      });
+      }
+    });
 
-      setTables(updated);
-    };
+    setTables(updated);
+  } catch (err) {
+    console.error("Failed to fetch tables", err);
+  }
+};
 
-    updateTableStatuses();
-    const interval = setInterval(updateTableStatuses, 60000);
-
+useEffect(() => {
+  if (!loading && Array.isArray(orders)) {
+    fetchTables();
+    const interval = setInterval(fetchTables, 60000);
     return () => clearInterval(interval);
-  }, [orders, loading]);
+  }
+}, [orders, loading]);
 
   const filteredTables = searchInput
     ? tables.filter((table) =>

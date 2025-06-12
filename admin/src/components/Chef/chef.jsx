@@ -8,13 +8,12 @@ const ChefOrdersTable = () => {
   const [chefOrders, setChefOrders] = useState([]);
 
   useEffect(() => {
-    if (!contextOrders || contextOrders.length === 0) return;
 
     const chefs = ["Manesh", "Pritam", "Yash", "Tenzen"];
     const chefState = chefs.map((name) => ({ name, orders: [] }));
 
-    contextOrders.forEach((order, index) => {
-      const minutes = parseInt(order.statusDetails);
+    if(contextOrders && contextOrders.length > 0){
+    contextOrders.forEach((order) => {
       const currentChef =
         chefState.find((c) => c.orders.length === 0) ||
         chefState.reduce((minChef, chef) => {
@@ -31,7 +30,7 @@ const ChefOrdersTable = () => {
 
       currentChef.orders.push(order);
     });
-
+  }
     const result = chefState.map((c) => ({
       name: c.name,
       orders: c.orders.length,

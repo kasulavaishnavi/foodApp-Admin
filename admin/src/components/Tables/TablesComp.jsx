@@ -15,7 +15,7 @@ const TablesWithStatusOnly = ({ tables, setTables }) => {
 
   return (
     <div>
-      <h2>Tables Status</h2>
+      <h2>Tablesoooooootatus</h2>
       <ul style={{ listStyle: "none", paddingLeft: 0 }}>
         {tables.length === 0 && <li>No tables available.</li>}
         {tables.map(({ id, name, chairs, status }) => (
@@ -38,6 +38,7 @@ const TablesWithStatusOnly = ({ tables, setTables }) => {
               </span>
             </div>
             <div>
+              <h1>hello</h1>
               <button
                 onClick={() => toggleStatus(id)}
                 style={{ marginRight: "8px" }}

@@ -11,6 +11,7 @@ const  App = () => {
   return (
     <>
     <div className='app'>
+      
       <Routes>
         <Route path='/' element = {<Home/>} />
         <Route path='/cart' element = {<Cart/>} />

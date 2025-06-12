@@ -132,8 +132,9 @@ const UserInfo = ({
   // setForm(JSON.parse(JSON.stringify(mostRecentUserInfo)));
 
   return (
+     <>
     <div className="user-info-container">
-      <>
+     
       {showForm ? (
         <form onSubmit={createForm} className="user-form">
           <h3 className="label">Your Details</h3>
@@ -284,8 +285,8 @@ const UserInfo = ({
           )}
         </div>
       )}
-    </>
-<SwipeOrder
+    </div>
+    <SwipeOrder
   mostRecentUserInfo={mostRecentUserInfo}
   showForm={showForm}
   sendOrderToBackend={() => sendOrderToBackend(mostRecentUserInfo)}
@@ -293,8 +294,7 @@ const UserInfo = ({
   setSwiped={setSwiped}
 />
 
-
-    </div>
+     </>
   );
 };
 

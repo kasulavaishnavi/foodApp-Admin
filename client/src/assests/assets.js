@@ -4,8 +4,6 @@ import add_icon_white from "./add_icon_white.png";
 import add_icon_green from "./add_icon_green.png";
 import remove_icon_red from "./remove_icon_red.png";
 import cross_icon from "./cross_icon.png";
-import selector_icon from "./selector_icon.png";
-import confirmed from "./confirmed.jpg";
 
 import burger_logo from "./burger logo.png";
 import vegan_burger from "./-vegan-burger.avif";
@@ -115,7 +113,7 @@ export const menu_list = [
   {
     menu_name: "Sandwich",
     menu_image: sandwich_logo,
-    time: 15
+    time: 10
   },
   {
     menu_name: "Rolls",
@@ -245,14 +243,14 @@ export const food_list = [
   },
   {
     _id: "15",
-    name: "French Fries with Sausage",
+    name: "Fries with Sausage",
     image: sausage,
     price: 140,
     category: "Fries",
   },
   {
     _id: "16",
-    name: "French Fries with Melted Cheese",
+    name: "Fries with Melted Cheese",
     image: melted_cheese,
     price: 150,
     category: "Fries",
@@ -280,21 +278,21 @@ export const food_list = [
   },
   {
     _id: "20",
-    name: "Salted Cucumbers",
+    name: "Salted Cucumber Sandwich",
     image: salted_cucumbers,
     price: 160,
     category: "Sandwich",
   },
   {
     _id: "21",
-    name: "Pepperoni",
+    name: "Pepperoni Sandwich",
     image: sandwich2,
     price: 180,
     category: "Sandwich",
   },
   {
     _id: "22",
-    name: "Cucumber Tomato with Salami",
+    name: "Salami Sandwich",
     image: sandwich3,
     price: 180,
     category: "Sandwich",
@@ -315,7 +313,7 @@ export const food_list = [
   },
   {
     _id: "25",
-    name: "Grilled Paneer",
+    name: "Grilled Paneer Roll",
     image: roll1,
     price: 130,
     category: "Rolls",
@@ -329,56 +327,56 @@ export const food_list = [
   },
   {
     _id: "27",
-    name: "Grilled Chicken",
+    name: "Grilled Chicken Roll",
     image: grilled_chicken,
     price: 150,
     category: "Rolls",
   },
   {
     _id: "28",
-    name: "Paneer",
+    name: "Paneer Roll",
     image: paneer,
     price: 120,
     category: "Rolls",
   },
   {
     _id: "29",
-    name: "Pepporoni",
+    name: "Pepperoni Pizza",
     image: pepporoni,
     price: 210,
     category: "Pizza",
   },
   {
     _id: "30",
-    name: "Margherita",
+    name: "Margherita Pizza",
     image: margherita,
     price: 200,
     category: "Pizza",
   },
   {
     _id: "31",
-    name: "Bellpepper olives",
+    name: "Bellpepper Olive Pizza",
     image: bellpeper_olives,
     price: 220,
     category: "Pizza",
   },
   {
     _id: "32",
-    name: "Eggplant",
+    name: "Eggplant Pizza",
     image: eggPlant,
     price: 200,
     category: "Pizza",
   },
   {
     _id: "33",
-    name: "Mushroom",
+    name: "Mushroom Pizza",
     image: mushroom,
     price: 220,
     category: "Pizza",
   },
   {
     _id: "34",
-    name: "Chicken Bellpepper",
+    name: "Chicken Bellpepper Pizza",
     image: chicken_bellpepper,
     price: 220,
     category: "Pizza",
@@ -392,21 +390,21 @@ export const food_list = [
   },
   {
     _id: "36",
-    name: "Grilled Beef",
+    name: "Grilled Beef Burger",
     image: grilled_beef,
     price: 220,
     category: "Burger",
   },
   {
     _id: "37",
-    name: "Double Chees",
+    name: "DoubleCheese Burger",
     image: double_cheese,
     price: 220,
     category: "Burger",
   },
   {
     _id: "38",
-    name: "Deep Fried Chicken",
+    name: "Deep Fried Chicken Burger",
     image: deep_fired_chicken,
     price: 220,
     category: "Burger",

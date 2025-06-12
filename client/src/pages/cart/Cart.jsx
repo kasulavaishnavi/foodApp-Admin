@@ -8,11 +8,11 @@ import { menu_list } from "../../assests/assets";
 import Searchbar from "../../components/searchbar/Searchbar";
 import axios from "axios";
 
+
 const Cart = () => {
   const url = "https://foodapp-server-t1i3.onrender.com";
 
   const [tableNumber, setTableNumber] = useState("");
-
   const { cart, food_list, removeFromCart, totalCartAmount } =
     useContext(ItemContext);
 

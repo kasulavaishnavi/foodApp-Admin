@@ -1,3 +1,4 @@
+
 import React, { useContext } from "react";
 import { TableContext } from "../../Context/TableContext";
 import "./TablesStatus.css";
@@ -30,14 +31,14 @@ const TablesStatus = () => {
         </div>
       </div>
       <div className="tables-grid">
-        {tables.map((table) => (
+        {tables.map((table,index) => (
           <div
             key={table.id}
             className={`table ${table.status === "available" ? "available-bg" : "reserved-bg"}`}
           >
             Table
             <br />
-            {String(table.name).replace("Table ", "").padStart(2, "0")}
+            {String(index + 1).padStart(2, "0")}
           </div>
         ))}
       </div>

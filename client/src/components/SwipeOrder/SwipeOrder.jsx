@@ -8,7 +8,7 @@ const SwipeOrder = ({
   navigate,
   setSwiped,
 }) => {
-  const buttonWidth = 300;
+  const buttonWidth = 320;
   const circleWidth = 50;
   const swipeThreshold = buttonWidth * 0.6;
 
@@ -42,10 +42,11 @@ const SwipeOrder = ({
   };
 
   return (
+    <div className="swipeContainer">
  <div
   style={{
     width: buttonWidth,
-    height: 60,
+    height: 70,
     borderRadius: 30,
     position: "relative",
     overflow: "hidden",
@@ -72,6 +73,7 @@ const SwipeOrder = ({
         <span className="arrow-icon">→</span>
       </div>
       <span className="swipe-text">Swipe to Order</span>
+    </div>
     </div>
   );
 };

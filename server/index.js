@@ -39,13 +39,14 @@ require("./DB/connection");
 // Require Routes
 const userDetails = require("./routes/userDetails");
 const itemRoute = require("./routes/itemRoute");
-const cartRouter = require("./routes/cartRoutes")
+const cartRouter = require("./routes/cartRoutes");
+const tableRouter = require("./routes/tableRoutes")
 // Routes
 app.use("/api/food", userDetails);
 app.use("/api/food", itemRoute)
 app.use("/images", express.static('uploads'));
 app.use("/api/food", cartRouter)
-
+app.use("/api/food", tableRouter)
 
 
 

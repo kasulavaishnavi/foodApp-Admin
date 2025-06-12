@@ -19,7 +19,7 @@ const OrderItem = ({ order, tableInfo }) => {
 
     items.forEach((orderItem) => {
       const foodItem = food_list.find(
-        (item) => item.name.toLowerCase() === orderItem.name.toLowerCase()
+        (item) => item.name.trim().toLowerCase() === orderItem.name.trim().toLowerCase()
       );
       console.log("Checking:", orderItem.name, "-> found:", foodItem?.category);
       if (foodItem) {
