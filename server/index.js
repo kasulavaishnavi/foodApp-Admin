@@ -10,8 +10,8 @@ const app = express();
 const allowedOrigins = [
   "https://foodappclient1.onrender.com",
   "https://foodapp-admin-cola.onrender.com",
-  "http://localhost:3000/",
-  "http://localhost:3001/"
+  "http://localhost:3000",
+  "http://localhost:3001"
 ];
 
 
